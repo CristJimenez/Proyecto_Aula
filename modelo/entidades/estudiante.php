@@ -8,15 +8,15 @@ class estudiante
     private $estado;
     private $carrera;
     private $semestre;
-    private $biblioteca_id;
+    
 
-    public function __construct($huella_estudiante, $estado, $carrera, $semestre, $biblioteca_id)
+    public function __construct($huella_estudiante, $estado, $carrera, $semestre, )
     {
         $this->huella_estudiante = $huella_estudiante;
         $this->estado = $estado;
         $this->carrera = $carrera;
         $this->semestre = $semestre;
-        $this->biblioteca_id = $biblioteca_id;
+       
     }
 
     public function getHuella_estudiante()
@@ -59,15 +59,7 @@ class estudiante
         return $this->semestre = $semestre;
     }
 
-    public function getBiblioteca_id()
-    {
-        return $this->biblioteca_id;
-    }
 
-    public function setBiblioteca_id($biblioteca_id)
-    {
-        return $this->biblioteca_id = $biblioteca_id;
-    }
 
 }
 

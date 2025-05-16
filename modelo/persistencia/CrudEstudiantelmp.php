@@ -3,7 +3,7 @@
 $ruta = $_SERVER["DOCUMENT_ROOT"] . "PROAULA/";
 
 require_once "ICrudBd.php";
-require_once $ruta . "modelo/entidades/estudiante.php";
+require_once('C:/xamppR/htdocs/PROAULA/modelo/entidades/estudiante.php');
 require_once $ruta . "utilidades/bd./ConexionBDMYSQLImp.php";
 
 class CrudEstudiantelmp implements ICrudBd
@@ -11,7 +11,7 @@ class CrudEstudiantelmp implements ICrudBd
 
     public function consultarPorId($id)
     {
-        $sql = "Select * from estudiante where huella_estudiant = '$id' ";
+        $sql = "Select * from estudiante where huella_estudiante = '$id' ";
 
         $conBd = ConexionBDMYSQLImp::getInstance();
 
@@ -62,16 +62,15 @@ class CrudEstudiantelmp implements ICrudBd
         }
     }
 
-    public function agregar($estudiante)
+    public function Insertar($estudiante)
     {
         
         $sql = "Insert into estudiantes
         Value ('" . $estudiante->getHuella_estudiante() . "'
         , '" . $estudiante->getEstado() . "'
         , '" . $estudiante->getCarrera() . "'
-        , '" . $estudiante->getSemestre() . "'
-        , '" . $estudiante->getBiblioteca_id() . "')";
-
+        , '" . $estudiante->getSemestre() . "')";
+        
         $conBd = ConexionBDMYSQLImp::getInstance();
         $conBd->conectar();
 
@@ -91,15 +90,15 @@ class CrudEstudiantelmp implements ICrudBd
          $conBd->transaccion($sql);
     }
 
-    public function editar($objeto)
+    public function modificar($objeto)
     {
         
         $sql = "UPDATE estudiante
-        SET huella_estudiant  = '" . $objeto->gatHuella_estudiante() . "',
+        SET huella_estudiante  = '" . $objeto->gatHuella_estudiante() . "',
         estado = '" . $objeto->getEstado() . "',
         carrera = '" . $objeto->getCarrera() . "',
-        semestre = '" . $objeto->getSemestre() . "',
-        biblioteca_id '" . $objeto->getBiblioteca_id() . "'";
+        semestre = '" . $objeto->getSemestre() . "'";
+        
 
         $conBd = ConexionBDMYSQLImp::getInstance();
         $conBd->conectar();
@@ -133,13 +132,13 @@ class CrudEstudiantelmp implements ICrudBd
     public function cargarEstudiante($fila)
     {
 
-        $u = new estudiante($fila["huella_estudiante"], $fila["estado"], $fila["carrera"], $fila["semestre"], $fila["biblioteca_id"]);
+        $u = new estudiante($fila["huella_estudiante"], $fila["estado"], $fila["carrera"], $fila["semestre"]);
 
         $u->setHuella_estudiante($fila["Huella_estudiante"]);
         $u->setEstado($fila["estado"]);
         $u->setCarrera($fila["carrera"]);
         $u->setSemestre($fila["semestre"]);
-        $u->setBiblioteca_id($fila["biblioteca_id"]);
+        
 
         return $u;
 
