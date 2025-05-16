@@ -1,6 +1,6 @@
 <?php
 
-$ruta = $_SERVER['DOCUMENT_ROOT'] . "Proyecto_Aula/";
+$ruta = $_SERVER['DOCUMENT_ROOT'] . "/Proyecto_Aula/";
 
 require_once "ICrudBd.php";
 require_once $ruta . "modelo/entidades/biblioteca.php";
@@ -66,10 +66,11 @@ class CrudBibliotecaImp implements ICrudBd
         }
     }
 
-    public function insertar($objeto)
+    public function insertar ($biblioteca)
     {
-        $sql = "INSERT INTO biblioteca VALUE ('". $objeto->getBibliotecaid ."', 
-        '". $objeto->getAforo ."', '". $objeto->getArea ."')";
+        $sql = "INSERT INTO biblioteca (`biblioteca_id`, `aforo`, `areas`)
+        VALUES ('". $biblioteca->getBibliotecaid() ."', 
+        '". $biblioteca->getAforo() ."', '". $biblioteca->getArea() ."')";
 
         $conBd = ConexionBDMYSQLImp::getInstance();
 
@@ -78,7 +79,7 @@ class CrudBibliotecaImp implements ICrudBd
         $conBd->transaccion($sql);
     }
 
-    public function eliminarPorId($id)
+    public function eliminarPorId ($id)
     {
         $sql = "DELETE FROM biblioteca WHERE biblioteca_id = '$id'";
 
@@ -91,8 +92,8 @@ class CrudBibliotecaImp implements ICrudBd
 
     public function modificar($objeto)
     {
-        $sql = "UPDATE biblioteca SET aforo = '". $objeto->getAforo ."', 
-        '". $objeto->getArea ."' WHERE biblioteca_id = '". $objeto->getBibliotecaid ."'";
+        $sql = "UPDATE biblioteca SET aforo = '". $objeto->getAforo() ."', 
+        '". $objeto->getArea() ."' WHERE biblioteca_id = '". $objeto->getBibliotecaid() ."'";
 
         $conBd = ConexionBDMYSQLImp::getInstance();
 
@@ -125,6 +126,12 @@ class CrudBibliotecaImp implements ICrudBd
     public function cargarBiblioteca ($row)
     {
         $b = new biblioteca($row[0], $row[1], $row[2]);
+
+        $b->setBibliotecaid($row['biblioteca_id']);
+
+        $b->setAforo($row['aforo']);
+
+        $b->setArea($row['areas']);
         
         return $b;
     }
