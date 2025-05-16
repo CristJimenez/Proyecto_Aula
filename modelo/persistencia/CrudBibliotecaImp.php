@@ -66,10 +66,10 @@ class CrudBibliotecaImp implements ICrudBd
         }
     }
 
-    public function insertar($biblioteca)
+    public function insertar($objeto)
     {
-        $sql = "INSERT INTO biblioteca VALUE ('". $biblioteca->getBibliotecaid ."', 
-        '". $biblioteca->getAforo ."', '". $biblioteca->getArea ."')";
+        $sql = "INSERT INTO biblioteca VALUE ('". $objeto->getBibliotecaid ."', 
+        '". $objeto->getAforo ."', '". $objeto->getArea ."')";
 
         $conBd = ConexionBDMYSQLImp::getInstance();
 
@@ -80,7 +80,46 @@ class CrudBibliotecaImp implements ICrudBd
 
     public function eliminarPorId($id)
     {
-        
+        $sql = "DELETE FROM biblioteca WHERE biblioteca_id = '$id'";
+
+        $conBd = ConexionBDMYSQLImp::getInstance();
+
+        $conBd->conectar();
+
+        $conBd->transaccion($sql);
+    }
+
+    public function modificar($objeto)
+    {
+        $sql = "UPDATE biblioteca SET aforo = '". $objeto->getAforo ."', 
+        '". $objeto->getArea ."' WHERE biblioteca_id = '". $objeto->getBibliotecaid ."'";
+
+        $conBd = ConexionBDMYSQLImp::getInstance();
+
+        $conBd->conectar();
+
+        $conBd->transaccion($sql);
+    }
+
+    public function contar()
+    {
+        $sql = "SELECT COUNT(biblioteca_id) AS Total FROM biblioteca";
+
+        $conBd = ConexionBDMYSQLImp::getInstance();
+
+        $conBd->conectar();
+
+        $resultado = $conBd->consultar($sql);
+
+        $row = $resultado->fetch_all(MYSQLI_BOTH);
+
+        if (count($row) > 0) {
+
+            return $row[0]['Total'];
+
+        } else {
+            throw new Exception("Consulta vacia");
+        }
     }
 
     public function cargarBiblioteca ($row)

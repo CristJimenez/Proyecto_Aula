@@ -62,7 +62,7 @@ class CrudEstudiantelmp implements ICrudBd
         }
     }
 
-    public function agregar($estudiante)
+    public function insertar($estudiante)
     {
         
         $sql = "Insert into estudiantes
@@ -91,7 +91,7 @@ class CrudEstudiantelmp implements ICrudBd
          $conBd->transaccion($sql);
     }
 
-    public function editar($objeto)
+    public function modificar($objeto)
     {
         
         $sql = "UPDATE estudiante

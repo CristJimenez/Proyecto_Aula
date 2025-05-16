@@ -8,11 +8,11 @@ interface ICrudBd
 
     public function consultarTodo();
 
-    public function agregar($objeto);
+    public function insertar($objeto);
 
     public function eliminarPorId($id);
 
-    public function editar($objeto);
+    public function modificar($objeto);
 
     public function contar();
 }
