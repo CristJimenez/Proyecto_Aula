@@ -91,6 +91,7 @@ class CrudEstudiantelmp implements ICrudBd
     }
 
     public function modificar($objeto)
+    public function modificar($objeto)
     {
         
         $sql = "UPDATE estudiante
