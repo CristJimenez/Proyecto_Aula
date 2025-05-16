@@ -2,7 +2,7 @@
 
 include_once "IConexionBD.php";
 
-class ConexionMySQLImp implements IConexionBD{
+class ConexionBDMYSQLImp implements IConexionBD{
 
     //Propiedades
     private $host;
@@ -36,12 +36,12 @@ class ConexionMySQLImp implements IConexionBD{
 
     public static function getInstance(){
 
-        if(!ConexionMySQLImp::$instancia){
+        if(!ConexionBDMYSQLImp::$instancia){
 
-            ConexionMySQLImp::$instancia = new ConexionMySQLImp();
+            ConexionBDMYSQLImp::$instancia = new ConexionBDMYSQLImp();
         }
 
-        return ConexionMySQLImp::$instancia;
+        return ConexionBDMYSQLImp::$instancia;
     }
 
     public function consultar($sql_select)
