@@ -1,22 +1,17 @@
 <?php
+interface ICrudBd
+{
+    //metodos
+    public function consultarPorId ($id);
 
-    interface ICrudBd{
+    public function consultarTodo ();
 
+    public function insertar ($objeto);
 
-        //metodos abstractos
-        public function consultarPorId($documento);
+    public function eliminarPorId ($id);
 
-        public function consultarTodo();
+    public function modificar ($objeto);
 
-        public  function agregar($objeto);
-
-        public function eliminarPorId($documento);
-
-        public function editar($objeto);
-
-        public function contar();
-
-    }
-
-
+    public function contar ();
+}
 ?>
