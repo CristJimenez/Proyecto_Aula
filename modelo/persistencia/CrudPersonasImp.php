@@ -12,7 +12,7 @@
         {
             $sql = "SELECT * FROM personas WHERE documento = '$documento'";
 
-            $conBd = ConexionMySQLImp::getInstance();
+            $conBd = ConexionBDMYSQLImp::getInstance();
 
             $conBd->conectar();
 
@@ -31,7 +31,7 @@
         public function consultarTodo()
         {
             $sql = "SELECT * FROM  personas";
-            $conBd = ConexionMySQLImp::getInstance();
+            $conBd = ConexionBDMYSQLImp::getInstance();
             $conBd->conectar();
 
             $resultado = $conBd->consultar($sql);
@@ -58,7 +58,7 @@
         }
 
 
-        public function agregar($usuario)
+        public function insertar ($usuario)
         {
             $sql = "INSERT INTO personas VALUE ('" . $usuario->getHuella() ."'
             ,'" . $usuario->getDocumento() . "'
@@ -66,7 +66,7 @@
             ,'" . $usuario->getApellidos() . "'
             ,'" . $usuario->getEmail() . "')";
 
-            $conBd = ConexionMySQLImp::getInstance();
+            $conBd = ConexionBDMYSQLImp::getInstance();
             $conBd->conectar();
 
             $conBd->transaccion($sql);
@@ -76,20 +76,20 @@
         {
             $sql = "DELETE FROM personas WHERE documento = '$documento'";
 
-            $conBd = ConexionMySQLImp::getInstance();
+            $conBd = ConexionBDMYSQLImp::getInstance();
             $conBd->conectar();
 
             $conBd->transaccion($sql);
         }
 
-        public function editar($objeto)
+        public function modificar ($objeto)
         {
             
             $sql = "UPDATE personas SET nombres = '" .$objeto->getNombres() ."',
             apellidos = '" .$objeto->getApellidos() ."',
             email = '" .$objeto->getEmail() . "' WHERE documento = '" .$objeto->getDocumento ."'";
 
-            $conBd = ConexionMySQLImp::getInstance();
+            $conBd = ConexionBDMYSQLImp::getInstance();
             $conBd->conectar();
 
             $conBd->transaccion($sql);
@@ -99,7 +99,7 @@
         {
             $sql = "SELECT count(documento) as total FROM personas";
 
-            $conBd = ConexionMySQLImp::getInstance();
+            $conBd = ConexionBDMYSQLImp::getInstance();
             $conBd ->conectar;
 
             $resultado = $conBd->consultar($sql);
