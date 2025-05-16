@@ -1,9 +1,10 @@
 <?php
+
 include_once "IConexionBD.php";
 
-class ConexionBDMYSQLImp implements IConexionBD {
+class ConexionBDMYSQLImp implements IConexionBD{
 
-    //propiedades
+    //Propiedades
     private $host;
     private $port;
     private $database;
@@ -12,51 +13,57 @@ class ConexionBDMYSQLImp implements IConexionBD {
     private static $instancia;
     private $conexion;
 
-    //constructor
-    private function __construct ($host = 'localhost', $port = 3306, 
-    $database = 'unicolombo', $user = 'root', $password = '')
+    //Constructor
+    private function __construct(
+        $host = "localhost",
+        $port = "3306",
+        $database = "unicolomboa",
+        $user = "root",
+        $password = "ejmysql"
+    )
     {
         $this->host = $host;
         $this->port = $port;
         $this->database = $database;
-        $this->user = $$user;
+        $this->user = $user;
         $this->password = $password;
     }
 
-    //metodo para conectar con el smbdr mysql
-    public function conectar () 
-    {
-        $this->conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
+    //Metodo para conectar con el SMBDR y la base de datos
+    public function conectar(){
+       $this-> conexion = new mysqli($this->host,$this->user,$this->password,$this->database);
     }
 
-    //metodo para obtener objeto o instancia unica
-    public static function getInstance ()
-    {
-        if (!ConexionBDMYSQLImp::$instancia) {
+    public static function getInstance(){
+
+        if(!ConexionBDMYSQLImp::$instancia){
+
             ConexionBDMYSQLImp::$instancia = new ConexionBDMYSQLImp();
         }
+
         return ConexionBDMYSQLImp::$instancia;
     }
 
-    //metodo para ejecutar consulta sql
     public function consultar($sql_select)
     {
-        return $this->conexion->query($sql_select);
+        return $this ->conexion->query($sql_select);
+
     }
 
-    //metodo para ejecutar insert, delete y update
     public function transaccion($sql_transaccion, $tipo = "")
     {
-        return $this->conexion->query($sql_transaccion);
+        $this->conexion->query($sql_transaccion);
     }
 
-    //metodo para desconectar con el smbdr mysql
-    public function desconectar () 
+    public function desconectar()
     {
-        if ($this->conexion) {
-            $this->conexion->close();
+        if($this->conexion){
+            $this->conexion->close;
         }
-        $this->conexion = null;
     }
+
 }
+
+
+
 ?>
