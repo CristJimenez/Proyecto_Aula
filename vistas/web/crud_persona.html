@@ -19,7 +19,7 @@
         <H2>Agregar Usuarios</H2>
 
         <HR />
-        <form action="" method="post">
+        <form action="../../../controladores/ctrlPersonas.php" method="post">
             <fieldset>
                 <table>
                     <tr>
@@ -43,7 +43,7 @@
                     <tr>
                         <th>Apellidos:</th>
                         <td>
-                            <input type="text" name="apelido" id="apellido" required placeholder="Ingrese su apellido">
+                            <input type="text" name="apellido" id="apellido" required placeholder="Ingrese su apellido">
                         </td>
                     </tr>
                     <tr>
