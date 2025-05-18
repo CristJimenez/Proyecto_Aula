@@ -17,7 +17,7 @@ class ConexionBDMYSQLImp implements IConexionBD{
     private function __construct(
         $host = "localhost",
         $port = "3306",
-        $database = "unicolombo",
+        $database = "unicolombob",
         $user = "root",
         $password = ""
     )
