@@ -92,7 +92,7 @@ class CrudBibliotecaImp implements ICrudBd
 
     public function modificar($objeto)
     {
-        $sql = "UPDATE biblioteca SET aforo = '". $objeto->getAforo() ."', 
+        $sql = "UPDATE biblioteca SET aforo = '". $objeto->getAforo() ."', areas =  
         '". $objeto->getArea() ."' WHERE biblioteca_id = '". $objeto->getBibliotecaid() ."'";
 
         $conBd = ConexionBDMYSQLImp::getInstance();
