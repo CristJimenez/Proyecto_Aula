@@ -22,7 +22,7 @@ class biblioteca
 
     public function setBibliotecaid ($bibliotecaid)
     {
-        return $this->bibliotecaid;
+        return $this->bibliotecaid = $bibliotecaid;
     }
 
     public function getAforo ()
@@ -32,7 +32,7 @@ class biblioteca
 
     public function setAforo($aforo)
     {
-        return $this->aforo;
+        return $this->aforo = $aforo;
     }
 
     public function getArea ()
@@ -42,7 +42,7 @@ class biblioteca
 
     public function setArea ($area)
     {
-        return $this->area;
+        return $this->area = $area;
     }
 }
 ?>
