@@ -17,9 +17,9 @@ class ConexionBDMYSQLImp implements IConexionBD{
     private function __construct(
         $host = "localhost",
         $port = "3306",
-        $database = "unicolomboa",
+        $database = "unicolombob",
         $user = "root",
-        $password = "ejmysql"
+        $password = ""
     )
     {
         $this->host = $host;
@@ -51,9 +51,16 @@ class ConexionBDMYSQLImp implements IConexionBD{
     }
 
     public function transaccion($sql_transaccion, $tipo = "")
-    {
-        $this->conexion->query($sql_transaccion);
+{
+    $conn = $this->conexion;
+
+    if (!$conn->query($sql_transaccion)) {
+        echo "Error al ejecutar: " . $conn->error;
+    } else {
+        echo "Transacción exitosa.";
     }
+}
+
 
     public function desconectar()
     {

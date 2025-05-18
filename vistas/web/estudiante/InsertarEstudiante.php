@@ -18,7 +18,7 @@
         <h2>INSERTAR ESTUDIANTE</h2>
         <hr />
 
-        <form action="post" action="../../../controladores/ControladorEstudiante.php">
+        <form action="../../../Controladores/ControladorEstudiante.php" method="POST" >
             <fieldset style="width: 40%;">
                 <table>
                     <tr>
