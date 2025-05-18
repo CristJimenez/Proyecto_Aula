@@ -24,7 +24,7 @@
                 <tr>
                     <th>BIBLIOTECA ID:</th>
                     <td>
-                        <input type="number" name="id" id="id" required
+                        <input type="text" name="id" id="id" required
                         placeholder="INGRESE EL ID">
                         <input type="submit" value="CONSULTAR-M" name="accion">
                     </td>
@@ -41,7 +41,7 @@
                     <tr>
                     <th>BIBLIOTECA ID:</th>
                     <td>
-                        <input type="number" name="id" id="id" required
+                        <input type="text" name="id" id="id" required
                         value="<?= $id?>" readonly>
                     </td>
                 </tr>

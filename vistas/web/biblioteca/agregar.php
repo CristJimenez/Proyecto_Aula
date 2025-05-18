@@ -24,7 +24,7 @@
                 <tr>
                     <th>BIBLIOTECA ID:</th>
                     <td>
-                        <input type="number" name="id" id="id" required
+                        <input type="text" name="id" id="id" required
                         placeholder="INGRESE EL ID">
                     </td>
                 </tr>
