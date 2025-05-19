@@ -1,6 +1,6 @@
 <?php
-
-    require_once "../modelo/persistencia/CrudPersonasImp.php";
+    require_once(__DIR__ . "/../modelo/persistencia/CrudPersonasImp.php");
+    //require_once "../modelo/persistencia/CrudPersonasImp.php";
     
    class ctrlPersona{
     public static function actuar(){
@@ -46,8 +46,21 @@
         header("Location: ../vistas/web/personas/addPersona.php?msj=$msj");
 
       }
+
+       public static function consultar_todo(){
+        session_start();
+        $crud = new CrudPersonasImp();
+        $_SESSION['usuarios'] = $crud->consultarTodo();
+
+    header("Location: ../vistas/web/personas/mostrarUsuarios.php");
+    exit();
+
+
+      }
 }
    
-ctrlPersona::actuar();
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    ctrlPersona::actuar();
+}
 
 ?>
