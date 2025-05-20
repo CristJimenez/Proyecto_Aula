@@ -103,7 +103,7 @@ public function eliminarPorId($huella_persona)
         {
 
              $sql = "UPDATE empleados
-            SET horario ='" . $objeto->getHorario() ."',
+             horario ='" . $objeto->getHorario() ."',
                 cargo ='" . $objeto->getCargo() ."',
                 Departamento ='" . $objeto->getDepartamento() ."'";
                 
