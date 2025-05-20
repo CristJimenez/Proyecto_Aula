@@ -20,7 +20,7 @@ class ConexionBDMYSQLImp implements IConexionBD{
         $database = "unicolombob",
         $user = "root",
         $password = ""
-        $password = ""
+        
     )
     {
         $this->host = $host;

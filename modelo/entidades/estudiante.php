@@ -11,7 +11,7 @@ class estudiante
     private $semestre;
     
 
-    public function __construct($huella_persona, $estadoActivo, $CARRERA, $semestre, )
+    public function __construct($huella_persona, $estadoActivo, $CARRERA, $semestre)
     {
         $this->huella_persona = $huella_persona;
         $this->estadoActivo = $estadoActivo;
