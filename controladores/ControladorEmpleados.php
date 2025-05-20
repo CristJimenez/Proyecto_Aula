@@ -20,9 +20,11 @@ class ControladorEmpleados{
             ControladorEmpleados::eliminar_empleado();
             break;
 
+
             case 'MODIFICAR';
             ControladorEmpleados::modificar();
             break;
+
         
 
                 
@@ -95,6 +97,7 @@ class ControladorEmpleados{
         
     }
 
+
     public static function modificar()
 {
 
@@ -104,7 +107,7 @@ class ControladorEmpleados{
     $departamento = @$_REQUEST['Departamento'];
    
 
-    $u = new empleados($huella_persona, $cargo, $horario, $departamento);
+    $e = new empleados($huella_persona, $cargo, $horario, $departamento);
 
     $crud = new CrudEmpleadoImp();
 
@@ -117,6 +120,7 @@ class ControladorEmpleados{
     
 
 }
+
 
 }
 
