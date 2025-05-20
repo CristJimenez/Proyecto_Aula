@@ -1,6 +1,6 @@
 <?php
 
-    $ruta = $_SERVER["DOCUMENT_ROOT"] . "crudphp/";
+    $ruta = $_SERVER["DOCUMENT_ROOT"] . "/Proyecto_Aula/";
 
     require_once "ICrudBd.php";
     require_once $ruta . "modelo/entidades/Personas.php";
@@ -10,7 +10,7 @@
 
         public function consultarPorId($documento)
         {
-            $sql = "SELECT * FROM persona WHERE documento = '$documento'";
+            $sql = "SELECT * FROM personas WHERE documento = '$documento'";
 
             $conBd = ConexionBDMYSQLImp::getInstance();
 
@@ -30,7 +30,7 @@
 
         public function consultarTodo()
         {
-            $sql = "SELECT * FROM  persona";
+            $sql = "SELECT * FROM  personas";
             $conBd = ConexionBDMYSQLImp::getInstance();
             $conBd->conectar();
 
@@ -60,7 +60,7 @@
 
         public function insertar ($usuario)
         {
-            $sql = "INSERT INTO persona VALUE ('" . $usuario->getHuella() ."'
+            $sql = "INSERT INTO personas VALUE ('" . $usuario->getHuella() ."'
             ,'" . $usuario->getDocumento() . "'
             ,'" . $usuario->getNombres() . "'
             ,'" . $usuario->getApellidos() . "'
@@ -74,7 +74,7 @@
 
         public function eliminarPorId($documento)
         {
-            $sql = "DELETE FROM persona WHERE documento = '$documento'";
+            $sql = "DELETE FROM personas WHERE documento = '$documento'";
 
             $conBd = ConexionBDMYSQLImp::getInstance();
             $conBd->conectar();
@@ -85,9 +85,11 @@
         public function modificar ($objeto)
         {
             
-            $sql = "UPDATE persona SET nombres = '" .$objeto->getNombres() ."',
+            $sql = "UPDATE personas SET 
+            documento = '" .$objeto->getDocumento() . "',
+            nombres = '" .$objeto->getNombres() ."',
             apellidos = '" .$objeto->getApellidos() ."',
-            email = '" .$objeto->getEmail() . "' WHERE documento = '" .$objeto->getDocumento ."'";
+            email = '" .$objeto->getEmail() . "' WHERE huella = '" .$objeto->getHuella() ."'";
 
             $conBd = ConexionBDMYSQLImp::getInstance();
             $conBd->conectar();
@@ -97,7 +99,7 @@
 
         public function contar()
         {
-            $sql = "SELECT count(documento) as total FROM persona";
+            $sql = "SELECT count(documento) as total FROM personas";
 
             $conBd = ConexionBDMYSQLImp::getInstance();
             $conBd ->conectar;
@@ -114,7 +116,7 @@
 
         public function cargarUsuario($fila){
 
-            $u = new Personas($fila[0], documento: $fila[1],nombres: $fila["nombre"],apellidos: $fila["apellidos"], email: $fila["email"]);
+            $u = new Personas($fila[0], documento: $fila[1],nombres: $fila["nombres"],apellidos: $fila["apellidos"], email: $fila["email"]);
             
             return $u;
         }
