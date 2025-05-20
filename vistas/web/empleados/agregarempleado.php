@@ -66,7 +66,7 @@ ini_set('display_errors', 1);
         </form>
     
       <hr>
-      <span style="color: red;"><?@$_REQUEST['msj']?></span>
+      <span style="color: red;"><?=@$_REQUEST['msj']?></span>
 
      </center>
 

@@ -1,8 +1,10 @@
 <?php
 
+
 $ruta = $_SERVER["DOCUMENT_ROOT"] . "/Proyecto_Aula/";
 require_once "ICrudBd.php";
 require_once $ruta . "modelo/entidades/empleados.php";
+
 require_once $ruta . "utilidades/bd/ConexionBdMySQLImp.php";
 
 
@@ -10,6 +12,7 @@ require_once $ruta . "utilidades/bd/ConexionBdMySQLImp.php";
 
  class CrudEmpleadoImp implements ICrudBd
 {
+
 
 
     
@@ -83,6 +86,7 @@ public function consultarTodo() {
         $conBd->transaccion($sql);
    }
 
+
 public function eliminarPorId($id)
         {
 
@@ -92,10 +96,12 @@ public function eliminarPorId($id)
             $conBd = ConexionBDMYSQLImp::getInstance();
             $conBd->conectar();
             $conBd->transaccion($sql);
+
         }
 
         public function modificar ($objeto)
         {
+
              $sql = "UPDATE empleados
             SET horario ='" . $objeto->getHorario() ."',
                 cargo ='" . $objeto->getCargo() ."',
@@ -113,13 +119,13 @@ public function eliminarPorId($id)
 
          public function contar()
         {
-            $sql ="SELECT count (id) as total
+            $sql ="SELECT count(huella_persona) as total
             FROM empleados";
 
             $conBd = ConexionBDMYSQLImp::getInstance();
             $conBd->conectar();
             $resultado = $conBd->consultar($sql);
-            $filas = $resultado->fetch_all(MYSQL_BOTH);
+            $filas = $resultado->fetch_all(MYSQLI_BOTH);
             if (count($filas) > 0) {
                 return $filas[0]["total"];
                 # code...
@@ -129,11 +135,16 @@ public function eliminarPorId($id)
             }
             
         
+
+
+
         }
 
              public function cargarEmpleado($fila): empleados{
 
+
             $e = new empleados($fila[0], $fila[1],$fila["nombres"],$fila["apellidos"]);
+
             
             return $e;
         }

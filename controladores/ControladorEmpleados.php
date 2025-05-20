@@ -35,7 +35,7 @@ class ControladorEmpleados{
         $crud->insertar($e);
         $total = $crud->contar();
         $msj = "Usuario agregado, Total: " . $total;
-        header("Location: ../vistas/web/empleados/agregarempleados.php?msj=$msj");
+        header("Location: ../vistas/web/empleados/agregarempleado.php?msj=$msj");
 
 
     }

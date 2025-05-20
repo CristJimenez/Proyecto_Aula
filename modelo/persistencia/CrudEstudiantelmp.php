@@ -1,6 +1,6 @@
 <?php
 
-$ruta = $_SERVER["DOCUMENT_ROOT"] . "PROAULA/";
+$ruta = $_SERVER["DOCUMENT_ROOT"] . "/Proyecto_Aula/";
 
 require_once "ICrudBd.php";
 require_once $ruta . "modelo/entidades/estudiante.php";
