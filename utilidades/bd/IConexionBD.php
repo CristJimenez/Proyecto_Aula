@@ -6,5 +6,6 @@ interface IConexionBD{
     public function consultar($sql_sql);
 
     public function transaccion($sq_transaccion, $tipo = "");
+
     
 }

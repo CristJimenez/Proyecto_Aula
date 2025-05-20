@@ -1,17 +1,17 @@
 <?php
 
-$ruta = $_SERVER["DOCUMENT_ROOT"] . "/Proyecto_Aula/";
+$ruta = $_SERVER["DOCUMENT_ROOT"] . "/PROAULA/Proyecto_Aula/";
 
 require_once "ICrudBd.php";
 require_once $ruta . "modelo/entidades/estudiante.php";
-require_once $ruta . "utilidades/bd./ConexionBDMYSQLImp.php";
+require_once $ruta . "utilidades/bd/ConexionBDMYSQLImp.php";
 
 class CrudEstudiantelmp implements ICrudBd
 {
 
     public function consultarPorId($id)
     {
-        $sql = "Select * from estudiante where huella_estudiant = '$id' ";
+        $sql = "Select * from estudiantes where huella_persona = '$id' ";
 
         $conBd = ConexionBDMYSQLImp::getInstance();
 
@@ -30,60 +30,48 @@ class CrudEstudiantelmp implements ICrudBd
         }
     }
 
-    public function consultarTodo()
-    {
-        
-        $sql = "SELECT * FROM estudiante";
-        $conBd = ConexionBDMYSQLImp::getInstance();
-        $conBd->conectar();
+   public function consultarTodo()
+{
+    $sql = "SELECT * FROM estudiantes";
+    $conBd = ConexionBDMYSQLImp::getInstance();
+    $conBd->conectar();
 
-        $resultado = $conBd->consultar($sql);
-        $filas = $resultado->fetch_all(MYSQLI_BOTH);
+    $resultado = $conBd->consultar($sql);
+    $filas = $resultado->fetch_all(MYSQLI_BOTH);
 
-        $lista_estudiantes = array();
+    $lista_estudiantes = array();
 
-        if ($resultado->num_rows > 0) {
-
-            foreach ($filas as $i => $filas) {
-
-                $u = $this->cargarEstudiante($filas);
-
-                $lista_estudiantes[] = $u;
-            }
-        }
-
-        if (count($lista_estudiantes) > 0) {
-
-            return $lista_estudiantes;
-
-        }else{
-
-            throw new Exception("No existen Estudiantes registrados en el Sistema");
-        }
+    foreach ($filas as $fila) {
+        $u = $this->cargarEstudiante($fila);
+        $lista_estudiantes[] = $u;
     }
 
-    public function insertar($estudiante)
-    {
-        
-        $sql = "Insert into estudiantes
-        Value ('" . $estudiante->getHuella_estudiante() . "'
-        , '" . $estudiante->getEstado() . "'
-        , '" . $estudiante->getCarrera() . "'
-        , '" . $estudiante->getSemestre() . "'
-        , '" . $estudiante->getBiblioteca_id() . "')";
+    return $lista_estudiantes; 
+}
 
-        $conBd = ConexionBDMYSQLImp::getInstance();
-        $conBd->conectar();
 
-        $conBd->transaccion($sql);
-    
-    }
+    public function Insertar($estudiante)
+{
+    $sql = "INSERT INTO estudiantes
+            VALUES (
+                '" . $estudiante->getEstadoActivo() . "',
+                '" . $estudiante->getSemestre() . "',
+                '" . $estudiante->getCARRERA() . "',
+                '" . $estudiante->getHuella_persona() . "'
+            )";
+
+    $conBd = ConexionBDMYSQLImp::getInstance();
+    $conBd->conectar();
+
+    return $conBd->transaccion($sql);
+}
+
 
     public function eliminarPorId($id)
     {
         
-        $sql = "DELETE FROM estudiante 
-         WHERE huella_estudiant = '$id'";
+        $sql = "DELETE FROM estudiantes 
+         WHERE huella_persona = '$id'";
 
          $conBd = ConexionBDMYSQLImp::getInstance();
          $conBd->conectar();
@@ -92,14 +80,16 @@ class CrudEstudiantelmp implements ICrudBd
     }
 
     public function modificar($objeto)
+
     {
         
-        $sql = "UPDATE estudiante
-        SET huella_estudiant  = '" . $objeto->gatHuella_estudiante() . "',
-        estado = '" . $objeto->getEstado() . "',
-        carrera = '" . $objeto->getCarrera() . "',
-        semestre = '" . $objeto->getSemestre() . "',
-        biblioteca_id '" . $objeto->getBiblioteca_id() . "'";
+        $sql = "UPDATE estudiantes
+        SET huella_persona  = '" . $objeto->getHuella_persona() . "',
+        estadoActivo = '" . $objeto->getEstadoActivo() . "',
+        CARRERA = '" . $objeto->getCARRERA() . "',
+        semestre = '" . $objeto->getSemestre() . "'";
+       
+        
 
         $conBd = ConexionBDMYSQLImp::getInstance();
         $conBd->conectar();
@@ -111,8 +101,8 @@ class CrudEstudiantelmp implements ICrudBd
     public function contar()
     {
         
-        $sql = "SELECT count(huella_estudiant) as total
-        FROM estudiante";
+        $sql = "SELECT count(huella_persona) as total
+        FROM estudiantes";
 
         $conBd = ConexionBDMYSQLImp::getInstance();
         $conBd->conectar();
@@ -133,13 +123,13 @@ class CrudEstudiantelmp implements ICrudBd
     public function cargarEstudiante($fila)
     {
 
-        $u = new estudiante($fila["huella_estudiante"], $fila["estado"], $fila["carrera"], $fila["semestre"], $fila["biblioteca_id"]);
+        $u = new estudiante($fila["huella_persona"], $fila["estadoActivo"], $fila["CARRERA"], $fila["semestre"]);
 
-        $u->setHuella_estudiante($fila["Huella_estudiante"]);
-        $u->setEstado($fila["estado"]);
-        $u->setCarrera($fila["carrera"]);
+        $u->setHuella_persona($fila["huella_persona"]);
+        $u->setEstadoActivo($fila["estadoActivo"]);
+        $u->setCarrera($fila["CARRERA"]);
         $u->setSemestre($fila["semestre"]);
-        $u->setBiblioteca_id($fila["biblioteca_id"]);
+        
 
         return $u;
 
