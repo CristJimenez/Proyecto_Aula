@@ -1,10 +1,11 @@
 <?php
 require_once '../modelo/persistencia/CrudEmpleados.php';
+require_once '../modelo/entidades/empleados.php';
 
 class ControladorEmpleados{
 
     public static function actuar(){
-        $accion = $_REQUEST['accion'];
+        $accion = $_REQUEST['accion'] ;
 
         switch ($accion) {
             case 'Guardar':
@@ -19,13 +20,13 @@ class ControladorEmpleados{
 
     public static function guardar_empleados(){
 
-        $id = @$_REQUEST['cc'];
+        $huella = @$_REQUEST['huella'];
         $cargo =@$_REQUEST['cargo'];
         $horario = @$_REQUEST['horario'];
         $departamento = @$_REQUEST['departamento'];
 
-        $e = new Empleados($id, $cargo);
-        $e->setBiblioteca_id($id);
+        $e = new empleados($huella, $cargo, $horario, $departamento);
+        $e->setHuella($huella);
         $e->setCargo($cargo);
         $e->setHorario($horario);
         $e->setDepartamento($departamento);
@@ -34,7 +35,7 @@ class ControladorEmpleados{
         $crud->insertar($e);
         $total = $crud->contar();
         $msj = "Usuario agregado, Total: " . $total;
-        header("Location: ../vistas/web/empleados/agregarempleados.php?msj=$msj");
+        header("Location: ../vistas/web/empleados/agregarempleado.php?msj=$msj");
 
 
     }

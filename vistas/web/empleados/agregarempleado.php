@@ -26,7 +26,7 @@ ini_set('display_errors', 1);
         <H2>Agregar Empleados</H2>
 
         <HR />
-        <form action="../../../controladores/ControladoresEmpleados.php" method="post">
+        <form action="../../../controladores/ControladorEmpleados.php" method="post">
             <fieldset>
                 <table>
                     <tr>
@@ -66,7 +66,7 @@ ini_set('display_errors', 1);
         </form>
     
       <hr>
-      <span style="color: red;"><?@$_REQUEST['msj']?></span>
+      <span style="color: red;"><?=@$_REQUEST['msj']?></span>
 
      </center>
 

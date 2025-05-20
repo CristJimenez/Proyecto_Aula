@@ -3,26 +3,26 @@
 
 class empleados
 {
-    private $huella;
+    private $huella_persona;
     private $cargo;
     private $horario;
     private $departamento;
 
      private $biblioteca_id;
 
-     public function __construct($huella,$cargo, $horario,$departamento)
+     public function __construct($huella_persona,$cargo, $horario,$departamento)
     {
-        $this->huella = $huella;
+        $this->huella_persona = $huella_persona;
         $this->cargo = $cargo;
         $this->horario = $horario;
         $this ->departamento = $departamento;
 
     }
         public function getHuella(){
-        return $this->huella;
+        return $this->huella_persona;
     }
-      public function setHuella($huella){
-        $this->huella= $huella;
+      public function setHuella($huella_persona){
+        $this->huella_persona= $huella_persona;
     }
 
         public function getCargo(){
