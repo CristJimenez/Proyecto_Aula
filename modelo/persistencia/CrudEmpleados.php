@@ -13,9 +13,9 @@ require_once $ruta . "utilidades/bd/ConexionBdMySQLImp.php";
 
 
     
- public function consultarPorId($id){
+ public function consultarPorId($huella){
     
-    $sql = "SELECT * FROM empleados where huella = '$id' ";
+    $sql = "SELECT * FROM empleados where huella_persona = '$huella' ";
 
         $conBd = ConexionBDMYSQLImp::getInstance();
 
@@ -29,7 +29,7 @@ require_once $ruta . "utilidades/bd/ConexionBdMySQLImp.php";
             return $this->cargarEmpleado($filas[0]);
         }else{
 
-            throw new Exception("El empleado con la HUELLA: $id No existe");
+            throw new Exception("El empleado con la HUELLA: $huella No existe");
 
         }
  }
@@ -72,10 +72,10 @@ public function consultarTodo() {
    public function insertar($empleados){
 
         $sql = "Insert into empleados
-        Value ('" . $empleados->getHuella() . "'
+        Value ('" . $empleados->getHorario() . "'
         , '" . $empleados->getCargo() . "'
-        , '" . $empleados->getHorario() . "'
-        , '" . $empleados->getDepartamento() . "')";
+        , '" . $empleados->getDepartamento() . "'
+        , '" . $empleados->getHuella() . "')";
 
         $conBd = ConexionBDMYSQLImp::getInstance();
         $conBd->conectar();
@@ -97,9 +97,9 @@ public function eliminarPorId($id)
         public function modificar ($objeto)
         {
              $sql = "UPDATE empleados
-            SET cargo ='" . $objeto->getCargo() ."',
-                horario ='" . $objeto->getHorario() ."',
-                departamento ='" . $objeto->getDepartamento() ."'";
+            SET horario ='" . $objeto->getHorario() ."',
+                cargo ='" . $objeto->getCargo() ."',
+                Departamento ='" . $objeto->getDepartamento() ."'";
                 
                 $conBd = ConexionBDMYSQLImp::getInstance();
                 $conBd->conectar();

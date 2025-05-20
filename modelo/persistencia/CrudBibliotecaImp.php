@@ -10,7 +10,7 @@ class CrudBibliotecaImp implements ICrudBd
 {
     public function consultarPorId($id)
     {
-        $sql = "SELECT * FROM biblioteca WHERE biblioteca_id = '$id'";
+        $sql = "SELECT * FROM bibliotecas WHERE id_biblioteca = '$id'";
 
         $conBd = ConexionBDMYSQLImp::getInstance();
 
@@ -33,7 +33,7 @@ class CrudBibliotecaImp implements ICrudBd
 
     public function consultarTodo()
     {
-        $sql = "SELECT * FROM biblioteca";
+        $sql = "SELECT * FROM bibliotecas";
 
         $conBd = ConexionBDMYSQLImp::getInstance();
 
@@ -68,9 +68,9 @@ class CrudBibliotecaImp implements ICrudBd
 
     public function insertar ($biblioteca)
     {
-        $sql = "INSERT INTO biblioteca (`biblioteca_id`, `aforo`, `areas`)
-        VALUES ('". $biblioteca->getBibliotecaid() ."', 
-        '". $biblioteca->getAforo() ."', '". $biblioteca->getArea() ."')";
+        $sql = "INSERT INTO bibliotecas (`aforo`, `areas`, `id_biblioteca`)
+        VALUES ('". $biblioteca->getAforo() ."', 
+        '". $biblioteca->getArea() ."', '". $biblioteca->getBibliotecaid() ."')";
 
         $conBd = ConexionBDMYSQLImp::getInstance();
 
@@ -81,7 +81,7 @@ class CrudBibliotecaImp implements ICrudBd
 
     public function eliminarPorId ($id)
     {
-        $sql = "DELETE FROM biblioteca WHERE biblioteca_id = '$id'";
+        $sql = "DELETE FROM bibliotecas WHERE id_biblioteca = '$id'";
 
         $conBd = ConexionBDMYSQLImp::getInstance();
 
@@ -92,8 +92,8 @@ class CrudBibliotecaImp implements ICrudBd
 
     public function modificar($objeto)
     {
-        $sql = "UPDATE biblioteca SET aforo = '". $objeto->getAforo() ."', 
-        '". $objeto->getArea() ."' WHERE biblioteca_id = '". $objeto->getBibliotecaid() ."'";
+        $sql = "UPDATE bibliotecas SET aforo = '". $objeto->getAforo() ."', areas =  
+        '". $objeto->getArea() ."' WHERE id_biblioteca = '". $objeto->getBibliotecaid() ."'";
 
         $conBd = ConexionBDMYSQLImp::getInstance();
 
@@ -104,7 +104,7 @@ class CrudBibliotecaImp implements ICrudBd
 
     public function contar()
     {
-        $sql = "SELECT COUNT(biblioteca_id) AS Total FROM biblioteca";
+        $sql = "SELECT COUNT(id_biblioteca) AS Total FROM bibliotecas";
 
         $conBd = ConexionBDMYSQLImp::getInstance();
 
@@ -127,7 +127,7 @@ class CrudBibliotecaImp implements ICrudBd
     {
         $b = new biblioteca($row[0], $row[1], $row[2]);
 
-        $b->setBibliotecaid($row['biblioteca_id']);
+        $b->setBibliotecaid($row['id_biblioteca']);
 
         $b->setAforo($row['aforo']);
 
