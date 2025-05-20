@@ -1,52 +1,53 @@
 <?php
 
+
 class estudiante
 {
 
     //propiedades
-    private $huella_estudiante;
-    private $estado;
-    private $carrera;
+    private $huella_persona;
+    private $estadoActivo;
+    private $CARRERA;
     private $semestre;
-    private $biblioteca_id;
+    
 
-    public function __construct($huella_estudiante, $estado, $carrera, $semestre, $biblioteca_id)
+    public function __construct($huella_persona, $estadoActivo, $CARRERA, $semestre)
     {
-        $this->huella_estudiante = $huella_estudiante;
-        $this->estado = $estado;
-        $this->carrera = $carrera;
+        $this->huella_persona = $huella_persona;
+        $this->estadoActivo = $estadoActivo;
+        $this->CARRERA = $CARRERA;
         $this->semestre = $semestre;
-        $this->biblioteca_id = $biblioteca_id;
+       
     }
 
-    public function getHuella_estudiante()
+    public function getHuella_persona()
     {
-        return $this->huella_estudiante;
+        return $this->huella_persona;
     }
 
-    public function setHuella_estudiante($huella_estudiante)
+    public function setHuella_persona($huella_persona)
     {
-        return $this->huella_estudiante = $huella_estudiante;
+        return $this->huella_persona = $huella_persona;
     }
 
-    public function getEstado()
+    public function getEstadoActivo()
     {
-        return $this->estado;
+        return $this->estadoActivo;
     }
 
-    public function setEstado($estado)
+    public function setEstadoActivo($estadoActivo)
     {
-        return $this->estado = $estado;
+        return $this->estadoActivo = $estadoActivo;
     }
 
-    public function getCarrera()
+    public function getCARRERA()
     {
-        return $this->carrera;
+        return $this->CARRERA;
     }
 
-    public function setCarrera($carrera)
+    public function setCARRERA($CARRERA)
     {
-        return $this->carrera = $carrera;
+        return $this->CARRERA = $CARRERA;
     }
 
     public function getSemestre()
@@ -59,15 +60,7 @@ class estudiante
         return $this->semestre = $semestre;
     }
 
-    public function getBiblioteca_id()
-    {
-        return $this->biblioteca_id;
-    }
 
-    public function setBiblioteca_id($biblioteca_id)
-    {
-        return $this->biblioteca_id = $biblioteca_id;
-    }
 
 }
 

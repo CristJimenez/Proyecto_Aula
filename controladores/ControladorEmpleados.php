@@ -20,6 +20,9 @@ class ControladorEmpleados{
             ControladorEmpleados::eliminar_empleado();
             break;
 
+            case 'MODIFICAR';
+            ControladorEmpleados::modificar();
+            break;
         
 
                 
@@ -92,7 +95,28 @@ class ControladorEmpleados{
         
     }
 
-  
+    public static function modificar()
+{
+
+    $huella_persona = @$_REQUEST['huella_persona'];
+    $cargo = @$_REQUEST['cargo'];
+    $horario = @$_REQUEST['horario'];
+    $departamento = @$_REQUEST['Departamento'];
+   
+
+    $u = new empleados($huella_persona, $cargo, $horario, $departamento);
+
+    $crud = new CrudEmpleadoImp();
+
+    $crud->modificar($u);
+    $total = $crud->contar();
+
+    $msj = "Estudiantes modificados, Total: " . $total;
+
+    header("Location: ../Vistas/web/empleados/modificarEmpleado.php?msj=$msj");
+    
+
+}
 
 }
 

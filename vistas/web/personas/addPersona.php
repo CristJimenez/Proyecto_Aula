@@ -19,7 +19,7 @@
         <H2>Agregar Usuarios</H2>
 
         <HR />
-        <form action="../../../controladores/ctrlPersonas.php" method="post">
+        <form action="../../../Controladores/ctrlPersonas.php" method="post">
             <fieldset>
                 <table>
                     <tr>
