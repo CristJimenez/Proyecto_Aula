@@ -66,7 +66,7 @@ class ConexionBDMYSQLImp implements IConexionBD{
     public function desconectar()
     {
         if($this->conexion){
-            $this->conexion->close;
+            $this->conexion->close();
         }
     }
 
