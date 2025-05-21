@@ -102,11 +102,13 @@ public function eliminarPorId($huella_persona)
         public function modificar ($objeto)
         {
 
-             $sql = "UPDATE empleados
+             $sql = "UPDATE empleados SET
+       
              horario ='" . $objeto->getHorario() ."',
                 cargo ='" . $objeto->getCargo() ."',
-                Departamento ='" . $objeto->getDepartamento() ."'";
-                
+                Departamento ='" . $objeto->getDepartamento() ."'
+                 WHERE huella_persona = '" . $objeto->getHuella() . "'";
+
                 $conBd = ConexionBDMYSQLImp::getInstance();
                 $conBd->conectar();
                 $conBd->transaccion($sql);

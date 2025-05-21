@@ -54,7 +54,7 @@ $empleados = $_SESSION['empleados'] ?? [];
         <?php } ?>
 
         <br>
-        <form method="post" action="../../../Controladores/ControladorEmpleado.php">
+        <form method="post" action="../../../Controladores/ControladorEmpleados.php">
             <input type="hidden" name="accion" value="CONSULTAR_TODO">
             <BUtton type="submit">CONSULTAR EMPLEADO</BUtton>
             </form>

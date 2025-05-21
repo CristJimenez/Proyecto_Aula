@@ -20,13 +20,14 @@ class ControladorEmpleados{
             ControladorEmpleados::eliminar_empleado();
             break;
 
-
             case 'MODIFICAR';
             ControladorEmpleados::modificar();
             break;
-
         
-
+            case 'CONSULTAR_TODO':
+                            ControladorEmpleados::consultar_todo();
+                            break;
+                            
                 
             default:
                 throw new Exception('Accion incorrecta');
@@ -97,31 +98,36 @@ class ControladorEmpleados{
         
     }
 
-
     public static function modificar()
 {
 
-    $huella_persona = @$_REQUEST['huella_persona'];
+    $huella_persona = @$_REQUEST['huella'];
     $cargo = @$_REQUEST['cargo'];
     $horario = @$_REQUEST['horario'];
-    $departamento = @$_REQUEST['Departamento'];
+    $departamento = @$_REQUEST['departamento'];
    
 
-    $e = new empleados($huella_persona, $cargo, $horario, $departamento);
+    $u = new empleados($huella_persona, $cargo, $horario, $departamento);
 
     $crud = new CrudEmpleadoImp();
 
     $crud->modificar($u);
-    $total = $crud->contar();
-
-    $msj = "Estudiantes modificados, Total: " . $total;
-
-    header("Location: ../Vistas/web/empleados/modificarEmpleado.php?msj=$msj");
     
 
+    $msj = "Empleados modificados, Total: "  ;
+
+    header("Location: ../Vistas/web/empleados/modificarEmpleado.php?msj=$msj");
+}
+public static function consultar_todo() {
+    session_start();
+    $crud = new CrudEmpleadoImp();
+    $_SESSION['empleados'] = $crud->consultarTodo();
+
+    header("Location: ../Vistas/web/empleados/mostrarEmpleado.php");
+    exit();
+}
 }
 
 
-}
 
 ControladorEmpleados::actuar();
