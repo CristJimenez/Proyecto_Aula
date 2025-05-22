@@ -85,9 +85,11 @@
         public function modificar ($objeto)
         {
             
-            $sql = "UPDATE personas SET nombres = '" .$objeto->getNombres() ."',
+            $sql = "UPDATE personas SET 
+            documento = '" .$objeto->getDocumento() . "',
+            nombres = '" .$objeto->getNombres() ."',
             apellidos = '" .$objeto->getApellidos() ."',
-            email = '" .$objeto->getEmail() . "' WHERE documento = '" .$objeto->getDocumento ."'";
+            email = '" .$objeto->getEmail() . "' WHERE huella = '" .$objeto->getHuella() ."'";
 
             $conBd = ConexionBDMYSQLImp::getInstance();
             $conBd->conectar();
@@ -114,7 +116,7 @@
 
         public function cargarUsuario($fila){
 
-            $u = new Personas($fila[0], $fila[1],$fila["nombres"],$fila["apellidos"],$fila["email"]);
+            $u = new Personas($fila[0], documento: $fila[1],nombres: $fila["nombres"],apellidos: $fila["apellidos"], email: $fila["email"]);
             
             return $u;
         }
