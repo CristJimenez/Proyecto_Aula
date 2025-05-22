@@ -74,11 +74,11 @@ public function consultarTodo() {
 
    public function insertar($empleados){
 
-        $sql = "Insert into empleados
-        Value ('" . $empleados->getHorario() . "'
-        , '" . $empleados->getCargo() . "'
-        , '" . $empleados->getDepartamento() . "'
-        , '" . $empleados->getHuella() . "')";
+   $sql = "INSERT INTO empleados (huella_persona, horario, cargo, Departamento)
+        VALUES ('" . $empleados->getHuella() . "',
+                '" . $empleados->getHorario() . "',
+                '" . $empleados->getCargo() . "',
+                '" . $empleados->getDepartamento() . "')";
 
         $conBd = ConexionBDMYSQLImp::getInstance();
         $conBd->conectar();
@@ -87,11 +87,11 @@ public function consultarTodo() {
    }
 
 
-public function eliminarPorId($id)
+public function eliminarPorId($huella_persona)
         {
 
             $sql = "DELETE FROM empleados
-            WHERE id = $id ";
+            WHERE huella_persona = '$huella_persona'";
 
             $conBd = ConexionBDMYSQLImp::getInstance();
             $conBd->conectar();
@@ -102,11 +102,13 @@ public function eliminarPorId($id)
         public function modificar ($objeto)
         {
 
-             $sql = "UPDATE empleados
-            SET horario ='" . $objeto->getHorario() ."',
+             $sql = "UPDATE empleados SET
+       
+             horario ='" . $objeto->getHorario() ."',
                 cargo ='" . $objeto->getCargo() ."',
-                Departamento ='" . $objeto->getDepartamento() ."'";
-                
+                Departamento ='" . $objeto->getDepartamento() ."'
+                 WHERE huella_persona = '" . $objeto->getHuella() . "'";
+
                 $conBd = ConexionBDMYSQLImp::getInstance();
                 $conBd->conectar();
                 $conBd->transaccion($sql);
@@ -143,10 +145,11 @@ public function eliminarPorId($id)
              public function cargarEmpleado($fila): empleados{
 
 
-            $e = new empleados($fila[0], $fila[1],$fila["nombres"],$fila["apellidos"]);
+            $e = new empleados($fila[0], $fila[1],$fila["horario"],departamento: $fila["Departamento"]);
 
             
             return $e;
         }
+
 }
 

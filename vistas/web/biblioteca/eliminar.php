@@ -27,46 +27,51 @@
                             <input type="submit" value="CONSULTAR-E" name="accion">
                         </td>
                     </tr>
-                    <br><br>
-                    <?php
-                    if (isset($_REQUEST['error'])) {
-                        echo "<p style='color:red'>" . $_GET['error'] . "</p>";
-                    } elseif (isset($_REQUEST['id'])) {
-                        $id = $_REQUEST['id'];
-                        $aforo = $_REQUEST['aforo'];
-                        $area = $_REQUEST['area'];
-                    ?>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">AFORO</th>
-                                    <th scope="col">AREA</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row"><?= $id ?></th>
-                                    <td><?= $aforo ?></td>
-                                    <td><?= $area ?></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <br><br>
-                        <tr>
-                            <td colspan="2" align="rigth">
-                                <input type="submit" value="ELIMINAR" name="accion">
-                            </td>
-                        </tr>
-                    <?php
-                    } else {
-                        echo "<p stile='color: red'>BUSQUE LA BIBLIOTECA A ELIMINAR</p>";
-                    }
-                    ?>
-                </fieldset>
             </form>
-            <hr>
-            <span style="color: red;"><?= @$_REQUEST['msjeli'] ?></span>
+            <br><br>
+            <?php
+            if (isset($_REQUEST['error'])) {
+                echo "<p style='color:red'>" . $_GET['error'] . "</p>";
+            } elseif (isset($_REQUEST['id'])) {
+                $id = $_REQUEST['id'];
+                $aforo = $_REQUEST['aforo'];
+                $area = $_REQUEST['area'];
+            ?>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">AFORO</th>
+                            <th scope="col">AREA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row"><?= $id ?></th>
+                            <td><?= $aforo ?></td>
+                            <td><?= $area ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br><br>
+                <form method="post" action="../../../controladores/ControladorBiblioteca.php " onsubmit="return confirm('¿Seguro desea eliminar este registro?')">
+                    <tr>
+                        <input type="hidden" name="id" id="id" value="<?= $id ?>">
+                        <td colspan="2" align="rigth">
+                            <input type="submit" value="ELIMINAR" name="accion">
+                        </td>
+                    </tr>
+                <?php
+            } else {
+                echo "<p stile='color: red'>BUSQUE LA BIBLIOTECA A ELIMINAR</p>";
+            }
+                ?>
+                </fieldset>
+                </form>
+                <hr>
+                <span style="color: red;"><?= @$_REQUEST['msjeli'] ?></span>
+                <br><br>
+                <a href="indexbiblioteca.html">Regresar</a>
         </center>
     </div>
 </body>

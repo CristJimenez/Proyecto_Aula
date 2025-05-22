@@ -7,11 +7,28 @@ class ControladorEmpleados{
     public static function actuar(){
         $accion = $_REQUEST['accion'] ;
 
-        switch ($accion) {
-            case 'Guardar':
+        switch (strtoupper($accion)) {
+            case 'GUARDAR':
                ControladorEmpleados::guardar_empleados();
                 break;
             
+                 case 'CONSULTAR':
+            ControladorEmpleados::consultar_empleado();
+            break;
+
+        case 'ELIMINAR':
+            ControladorEmpleados::eliminar_empleado();
+            break;
+
+            case 'MODIFICAR';
+            ControladorEmpleados::modificar();
+            break;
+        
+            case 'CONSULTAR_TODO':
+                            ControladorEmpleados::consultar_todo();
+                            break;
+                            
+                
             default:
                 throw new Exception('Accion incorrecta');
                 
@@ -39,6 +56,78 @@ class ControladorEmpleados{
 
 
     }
+ public static function consultar_empleado() {
+
+ 
+        // Verificamos que se envió la huella_persona desde el formulario
+             session_start();
+            $huella = $_POST['huella_persona'];
+            $crud = new CrudEmpleadoImp();
+            // Obtenemos el empleado usando el modelo por huella_persona
+            $empleado = $crud->consultarPorId($huella);
+
+            if(is_object($empleado)){
+
+            $_SESSION['datos'] =[
+                "horario" => $empleado->getHorario(),
+                "cargo" => $empleado->getCargo(),
+                "Departamento" => $empleado->getDepartamento(),
+                "huella_persona" => $empleado->getHuella()
+
+            ];
+            }else{
+                $_SESSION['datos']=[];
+            }
+
+         
+            header("Location: ../vistas/web/empleados/eliminar.php");
+            exit(); 
+            
+
+           
+    }
+
+        public static function eliminar_empleado() {
+ 
+            $huella = $_POST['huella_persona'];
+            $crud = new CrudEmpleadoImp();
+            $crud->eliminarPorId($huella);
+            $total = $crud->contar();
+            $msjeli = "Empleado eliminado correctamente. Quedan: " . $total;
+                header("Location: ../vistas/web/empleados/eliminar.php?msjeli=$msjeli");
+        
+    }
+
+    public static function modificar()
+{
+
+    $huella_persona = @$_REQUEST['huella'];
+    $cargo = @$_REQUEST['cargo'];
+    $horario = @$_REQUEST['horario'];
+    $departamento = @$_REQUEST['departamento'];
+   
+
+    $u = new empleados($huella_persona, $cargo, $horario, $departamento);
+
+    $crud = new CrudEmpleadoImp();
+
+    $crud->modificar($u);
+    
+
+    $msj = "Empleados modificados, Total: "  ;
+
+    header("Location: ../Vistas/web/empleados/modificarEmpleado.php?msj=$msj");
 }
+public static function consultar_todo() {
+    session_start();
+    $crud = new CrudEmpleadoImp();
+    $_SESSION['empleados'] = $crud->consultarTodo();
+
+    header("Location: ../Vistas/web/empleados/mostrarEmpleado.php");
+    exit();
+}
+}
+
+
 
 ControladorEmpleados::actuar();

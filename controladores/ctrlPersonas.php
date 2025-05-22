@@ -27,6 +27,10 @@ class ctrlPersona
                 ctrlPersona::eliminar();
                 break;
 
+            case 'Modificar':
+                ctrlPersona::modificarP();
+                break;
+
             default:
 
                 throw new Exception('Accion incorrecta');
@@ -75,7 +79,7 @@ class ctrlPersona
     {
         session_start();
 
-
+        $redirect = $_POST['redireccion'] ?? '';
         $documento = $_POST['documento'];
         $crud = new CrudPersonasImp();
         $elemento = $crud->consultarPorId($documento);
@@ -93,9 +97,13 @@ class ctrlPersona
             $_SESSION['datos'] = [];
         }
 
+        if (!empty($redirect)) {
 
-        header("Location: ../vistas/web/personas/eliminarPersona.php ");
-        exit();
+            header("Location: ../vistas/web/personas/modificarPersona.php");
+        } else {
+            header("Location: ../vistas/web/personas/eliminarPersona.php ");
+            exit();
+        }
     }
 
     public static function eliminar()
@@ -109,6 +117,22 @@ class ctrlPersona
         $msj = "Usuario eliminado, total: " . $total;
 
         header("Location: ../vistas/web/personas/eliminarPersona.php?msj=$msj");
+    }
+
+    public static function modificarP()
+    {
+
+
+        $huella = $_POST['huella'];
+        $documento_nuevo = trim($_POST['documento'] ?? '');
+        $nombre_nuevo = trim($_POST['nombre'] ?? '');
+        $apellido_nuevo = trim($_POST['apellido'] ?? '');
+        $email_nuevo = trim($_POST['email'] ?? '');
+
+        $u = new Personas($huella, $documento_nuevo, $nombre_nuevo, $apellido_nuevo, $email_nuevo);
+
+        $crud = new CrudPersonasImp();
+        $crud->modificar($u);
     }
 }
 
