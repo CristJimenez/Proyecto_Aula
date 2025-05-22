@@ -111,6 +111,9 @@ class ControladorBiblioteca
 
         $b = new biblioteca($bibliotecaid, $aforo, $area);
 
+        try {
+            
+
         $crud = new CrudBibliotecaImp();
 
         $crud->insertar($b);
@@ -120,6 +123,11 @@ class ControladorBiblioteca
         $msj = "Biblioteca agregada, Total: ". $total;
 
         header("Location: ../vistas/web/biblioteca/agregar.php?msj=$msj");
+        } catch (Exception $e) {
+            $msj = "La Biblioteca con el ID: " . $bibliotecaid . " ya existe";
+
+        header("Location: ../vistas/web/biblioteca/agregar.php?msj=$msj");
+        }
     }
 
     public static function eliminar_biblioteca ()
