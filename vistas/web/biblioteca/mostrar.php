@@ -15,7 +15,7 @@
     <?php
     require_once '../../../modelo/persistencia/CrudBibliotecaImp.php';
     require_once '../../../modelo/entidades/biblioteca.php';
-
+    echo "<a href='indexbiblioteca.html'>Regresar</a> <br><br>";
     try {
         
     $crud = new CrudBibliotecaImp();

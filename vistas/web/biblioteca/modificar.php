@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,74 +10,80 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <style type="text/css">
-        th{
+        th {
             text-align: right;
         }
     </style>
 </head>
+
 <body>
     <div>
-    <center>
-        <h2>MODIFICAR BIBLIOTECA</h2>
-        <hr>
-        <form method="post" action="../../../controladores/ControladorBiblioteca.php">
-            <fieldset style="width: 35%;">
-                <tr>
-                    <th>BIBLIOTECA ID:</th>
-                    <td>
-                        <input type="text" name="id" id="id" required
-                        placeholder="INGRESE EL ID">
-                        <input type="submit" value="CONSULTAR-M" name="accion">
-                    </td>
-                </tr>
-                <br><br>
-                <?php
-                if (isset($_REQUEST['error'])) {
-                    echo "<p style='color:red'>" . $_GET['error'] . "</p>";
-                } elseif (isset($_REQUEST['id'])) {
-                    $id = $_REQUEST['id'];
-                    $aforo = $_REQUEST['aforo'];
-                    $area = $_REQUEST['area'];
-                    ?>
+        <center>
+            <h2>MODIFICAR BIBLIOTECA</h2>
+            <hr>
+            <form method="post" action="../../../controladores/ControladorBiblioteca.php">
+                <fieldset style="width: 35%;">
                     <tr>
-                    <th>BIBLIOTECA ID:</th>
-                    <td>
-                        <input type="text" name="id" id="id" required
-                        value="<?= $id?>" readonly>
-                    </td>
-                </tr>
-                <br><br>
-                <tr>
-                    <th>AFORO:</th>
-                    <td>
-                        <input type="number" name="aforo" id="aforo" required
-                        value="<?= $aforo?>">
-                    </td>
-                </tr>
-                <br><br>
-                <tr>
-                    <th>AREA:</th>
-                    <td>
-                        <input type="text" name="area" id="area" required
-                        value="<?= $area?>">
-                    </td>
-                </tr>
-                <br><br>
-                <tr>
-                    <td colspan="2" align="rigth">
-                        <input type="submit" value="MODIFICAR" name="accion">
-                    </td>
-                </tr>
+                        <th>BIBLIOTECA ID:</th>
+                        <td>
+                            <input type="text" name="id" id="id" required
+                                placeholder="INGRESE EL ID">
+                            <input type="submit" value="CONSULTAR-M" name="accion">
+                        </td>
+                    </tr>
+                    <br><br>
+            </form>
+            <?php
+            if (isset($_REQUEST['error'])) {
+                echo "<p style='color:red'>" . $_GET['error'] . "</p>";
+            } elseif (isset($_REQUEST['id'])) {
+                $id = $_REQUEST['id'];
+                $aforo = $_REQUEST['aforo'];
+                $area = $_REQUEST['area'];
+            ?>
+                <form method="post" action="../../../controladores/ControladorBiblioteca.php">
+                    <tr>
+                        <th>BIBLIOTECA ID:</th>
+                        <td>
+                            <input type="text" name="id" id="id" required
+                                value="<?= $id ?>" readonly>
+                        </td>
+                    </tr>
+                    <br><br>
+                    <tr>
+                        <th>AFORO:</th>
+                        <td>
+                            <input type="number" name="aforo" id="aforo" required
+                                value="<?= $aforo ?>">
+                        </td>
+                    </tr>
+                    <br><br>
+                    <tr>
+                        <th>AREA:</th>
+                        <td>
+                            <input type="text" name="area" id="area" required
+                                value="<?= $area ?>">
+                        </td>
+                    </tr>
+                    <br><br>
+                    <tr>
+                        <td colspan="2" align="rigth">
+                            <input type="submit" value="MODIFICAR" name="accion">
+                        </td>
+                    </tr>
                 <?php
-                } else {
-                    echo "<p stile='color: red'>BUSQUE LA BIBLIOTECA A MODIFICAR</p>";
-                }
+            } else {
+                echo "<p stile='color: red'>BUSQUE LA BIBLIOTECA A MODIFICAR</p>";
+            }
                 ?>
-            </fieldset>
-        </form>
-        <hr>
-        <span style="color: red;"><?= @$_REQUEST['msjmod'] ?></span>
-    </center>
+                </fieldset>
+                </form>
+                <hr>
+                <span style="color: red;"><?= @$_REQUEST['msjmod'] ?></span>
+                <br><br>
+                <a href="indexbiblioteca.html">Regresar</a>
+        </center>
     </div>
 </body>
+
 </html>

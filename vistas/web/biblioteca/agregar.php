@@ -56,6 +56,8 @@
         </form>
         <hr>
         <span style="color: red;"><?= @$_REQUEST['msj'] ?></span>
+        <br><br>
+        <a href="indexbiblioteca.html">Regresar</a>
     </center>
     </div>
 </body>
