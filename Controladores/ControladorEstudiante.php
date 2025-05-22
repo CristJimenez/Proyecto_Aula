@@ -38,6 +38,18 @@ class ControladorEstudiante
     $CARRERA = @$_REQUEST['carrera'];
     $semestre = @$_REQUEST['semestre'];
 
+
+    $crud = new CrudEstudiantelmp();
+
+    try {
+        $existe = $crud->consultarPorId($huella_persona);
+        $msj = "El estudiante con esa huella ya existe";
+        header("Location: ../Vistas/web/estudiante/InsertarEstudiante.php?msj=$msj");
+        return;
+    } catch (Exception $e) {
+        
+    }
+
     // Asegúrate de que el constructor y setters estén usando los nombres correctos
     $u = new estudiante($huella_persona, $estadoActivo, $CARRERA, $semestre);
 
@@ -47,6 +59,7 @@ class ControladorEstudiante
     $u->setSemestre($semestre);
 
     $crud = new CrudEstudiantelmp();
+
 
     $crud->Insertar($u);
 
