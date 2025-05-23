@@ -103,26 +103,30 @@ class ControladorEmpleados
         header("Location: ../vistas/web/empleados/eliminar.php?msjeli=$msjeli");
     }
 
-    public static function modificar()
-    {
+ public static function modificar() {
+    $huella_persona = @$_REQUEST['huella'];
+    $cargo = @$_REQUEST['cargo'];
+    $horario = @$_REQUEST['horario'];
+    $departamento = @$_REQUEST['departamento'];
 
-        $huella_persona = @$_REQUEST['huella'];
-        $cargo = @$_REQUEST['cargo'];
-        $horario = @$_REQUEST['horario'];
-        $departamento = @$_REQUEST['departamento'];
+    $crud = new CrudEmpleadoImp();
 
+    try {
+        // ✅ Verificamos si la huella existe
+        $crud->consultarPorId($huella_persona); // Esto lanza una excepción si no existe
 
         $u = new empleados($huella_persona, $cargo, $horario, $departamento);
-
-        $crud = new CrudEmpleadoImp();
-
         $crud->modificar($u);
 
+        $msj = "Empleados modificados correctamente.";
+        header("Location: ../Vistas/web/empleados/modificarEmpleado.php?msj=" . urlencode($msj));
+    } catch (Exception $ex) {
+        $error = "❌ " . $ex->getMessage();
+                    $msj = "❌ No existe una persona con esa huella: " ;
 
-        $msj = "Empleados modificados, Total: ";
-
-        header("Location: ../Vistas/web/empleados/modificarEmpleado.php?msj=$msj");
+        header("Location: ../Vistas/web/empleados/modificarEmpleado.php?error=" . urlencode($error));
     }
+}
     public static function consultar_todo()
     {
         session_start();
