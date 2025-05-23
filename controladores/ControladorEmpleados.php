@@ -54,7 +54,7 @@ class ControladorEmpleados
             $msj = "Usuario agregado. Total: " . $total;
             header("Location: ../vistas/web/empleados/agregarempleado.php?msj=$msj");
         }
-    }ñ
+    }
     public static function consultar_empleado()
     {
 
