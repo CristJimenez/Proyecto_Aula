@@ -136,7 +136,7 @@
 
       <div class="buttons">
         <input type="reset" value="Limpiar" />
-        <input type="submit" value="Insertar" name="accion" />
+        <input type="submit" value="INSERTAR" name="accion" />
       </div>
     </form>
 

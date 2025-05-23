@@ -1,6 +1,6 @@
 <?php
 
-$ruta = $_SERVER["DOCUMENT_ROOT"] . "/PROAULA/Proyecto_Aula/";
+$ruta = $_SERVER["DOCUMENT_ROOT"] . "/Proyecto_Aula/";
 
 require_once "ICrudBd.php";
 require_once $ruta . "modelo/entidades/estudiante.php";
@@ -84,10 +84,10 @@ class CrudEstudiantelmp implements ICrudBd
     {
         
         $sql = "UPDATE estudiantes
-        SET huella_persona  = '" . $objeto->getHuella_persona() . "',
-        estadoActivo = '" . $objeto->getEstadoActivo() . "',
+        SET estadoActivo = '" . $objeto->getEstadoActivo() . "',
         CARRERA = '" . $objeto->getCARRERA() . "',
-        semestre = '" . $objeto->getSemestre() . "'";
+        semestre = '" . $objeto->getSemestre() . "' 
+        WHERE huella_persona  = '" . $objeto->getHuella_persona() . "'";
        
         
 

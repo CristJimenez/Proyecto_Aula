@@ -101,7 +101,7 @@
     <form method="POST" action="../../../Controladores/ControladorEstudiante.php">
       <label for="huella">Huella del Estudiante</label>
       <input type="number" name="huella" id="huella" required placeholder="Coloca la huella" />
-      <input type="submit" value="Eliminar" name="accion" />
+      <input type="submit" value="ELIMINAR" name="accion" />
     </form>
     <div id="mensaje-error"><?= @$_REQUEST['msj'] ?></div>
     <a href="indexEstudiante.html" class="boton-regresar">REGRESAR</a>
