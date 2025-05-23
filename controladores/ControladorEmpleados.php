@@ -36,25 +36,33 @@ class ControladorEmpleados
         }
     }
 
-    public static function guardar_empleados()
-    {
+   public static function guardar_empleados() {
+    $huella = @$_REQUEST['huella'];
+    $cargo = @$_REQUEST['cargo'];
+    $horario = @$_REQUEST['horario'];
+    $departamento = @$_REQUEST['departamento'];
 
-        $huella = @$_REQUEST['huella'];
-        $cargo = @$_REQUEST['cargo'];
-        $horario = @$_REQUEST['horario'];
-        $departamento = @$_REQUEST['departamento'];
+    $e = new empleados($huella, $cargo, $horario, $departamento);
 
-        $e = new empleados($huella, $cargo, $horario, $departamento);
+    $crud = new CrudEmpleadoImp();
 
-        $crud = new CrudEmpleadoImp();
-
-        try {
-            $crud->insertar($e);
-            $total = $crud->contar();
-            $msj = "Usuario agregado. Total: " . $total;
-            header("Location: ../vistas/web/empleados/agregarempleado.php?msj=$msj");
+    try {
+        $crud->insertar($e);
+        $total = $crud->contar();
+        $msj = "Usuario agregado. Total: " . $total;
+        header("Location: ../vistas/web/empleados/agregarempleado.php?msj=$msj");
+    } catch (Exception $ex) {
+        // Aquí se captura el error de duplicado o cualquier otro
+        if (str_contains($ex->getMessage(), 'Duplicate entry')) {
+            $msj = "❌ Error: La huella '$huella' ya está registrada.";
+        } else {
+            $msj = "❌ Error inesperado: " . $ex->getMessage();
         }
+
+        header("Location: ../vistas/web/empleados/agregarempleado.php?error=" . urlencode($msj));
     }
+}
+
     public static function consultar_empleado()
     {
 

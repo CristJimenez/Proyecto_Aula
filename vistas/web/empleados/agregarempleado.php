@@ -98,8 +98,8 @@
 
     .bottom span {
       display: block;
-      color: red;
       margin-top: 10px;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -130,12 +130,8 @@
           </tr>
           <tr>
             <td colspan="2" style="text-align: center;">
-              <input type="submit" class="btn-small" value="Guardar" name="accion">
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2" style="text-align: center;">
-              <input type="reset" class="btn-small" value="Limpiar">
+              <button type="submit" name="accion" value="GUARDAR" class="btn-small">GUARDAR</button>
+              <button type="reset" class="btn-small">LIMPIAR</button>
             </td>
           </tr>
         </table>
@@ -143,7 +139,12 @@
     </form>
 
     <div class="bottom">
-      <span><?= @$_REQUEST['msj'] ?></span>
+      <?php if (isset($_GET['error'])): ?>
+        <span style="color: red;"><?= htmlspecialchars($_GET['error']) ?></span>
+      <?php elseif (isset($_GET['msj'])): ?>
+        <span style="color: green;"><?= htmlspecialchars($_GET['msj']) ?></span>
+      <?php endif; ?>
+
       <br><br>
       <a href="indexEmpleado.html" class="btn-return">← REGRESAR</a>
     </div>
