@@ -16,7 +16,7 @@ $empleados = $_SESSION['empleados'] ?? [];
         }
         .title_tabla {
             font-weight: bold;
-            background-color:rgb(235, 67, 209);
+            background-color:rgb(255, 0, 0);
             padding: 8px;
         }
         td {
@@ -54,7 +54,7 @@ $empleados = $_SESSION['empleados'] ?? [];
         <?php } ?>
 
         <br>
-        <form method="post" action="../../../Controladores/ControladorEmpleado.php">
+        <form method="post" action="../../../Controladores/ControladorEmpleados.php">
             <input type="hidden" name="accion" value="CONSULTAR_TODO">
             <BUtton type="submit">CONSULTAR EMPLEADO</BUtton>
             </form>

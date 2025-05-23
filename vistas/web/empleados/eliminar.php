@@ -37,7 +37,7 @@
 
                 <?php session_start();
                 $datos = $_SESSION['datos'] ?? []; ?>
-
+    
                 <tbody>
                     <tr>
                         <th><?= htmlspecialchars($datos['horario'] ?? '') ?></th>
@@ -49,8 +49,9 @@
                         <form action="../../../controladores/ControladorEmpleados.php" method="post"
                             onsubmit="return confirm('¿Seguro desea eliminar este registro?');">
                             <input type="hidden" name="huella_persona"
-                                value="<?php htmlspecialchars($datos['huella_persona'] ?? ''); ?>">
-                            <input type="submit" value="ELIMINAR" name="accion">
+                                value="<?= htmlspecialchars($datos['huella_persona'] ?? ''); ?>">
+                            <input type="hidden"  name="accion" value="ELIMINAR">
+                            <input type="submit" value="ELIMINAR">
                         </form>
                     </td>
                     </tr>
