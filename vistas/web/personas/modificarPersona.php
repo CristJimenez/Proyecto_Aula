@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Modificar Estudiante</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
   <style>
     * {
       margin: 0;
@@ -22,12 +21,6 @@
       color: #333;
     }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #2c3e50;
-    }
-
     .container {
       max-width: 900px;
       margin: auto;
@@ -37,9 +30,15 @@
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     }
 
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
+
     form {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
 
     label {
@@ -50,10 +49,10 @@
 
     input[type="text"], input[type="email"] {
       padding: 10px;
-      width: 200px;
+      width: 220px;
       border: 1px solid #ccc;
       border-radius: 6px;
-      margin: 8px 0;
+      margin: 5px 0;
     }
 
     input[type="submit"] {
@@ -99,9 +98,9 @@
 
     .btn-regresar {
       display: inline-block;
-      margin-top: 30px;
-      padding: 6px 16px;
-      font-size: 14px;
+      margin-top: 25px;
+      padding: 6px 14px;
+      font-size: 13px;
       background-color: #555;
       color: white;
       border-radius: 6px;
@@ -119,12 +118,19 @@
       input[type="text"], input[type="email"] {
         width: 100%;
       }
+
+      .container {
+        padding: 20px;
+      }
+
+      th, td {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
 
 <body>
-
   <div class="container">
     <h1>Consultar Estudiante</h1>
 
@@ -137,36 +143,35 @@
     </form>
 
     <!-- Tabla para modificar -->
-    <table>
-      <tr>
-        <th>Documento</th>
-        <th>Nombre</th>
-        <th>Apellidos</th>
-        <th>Email</th>
-        <th>Acción</th>
-      </tr>
-
-      <?php
-        $datos = $_SESSION['datos'] ?? [];
-        if (!empty($datos)):
-      ?>
-      <tr>
-        <form action="../../../controladores/ctrlPersonas.php" method="POST">
+    <?php
+      $datos = $_SESSION['datos'] ?? [];
+      if (!empty($datos)):
+    ?>
+    <form action="../../../controladores/ctrlPersonas.php" method="POST">
+      <table>
+        <tr>
+          <th>Documento</th>
+          <th>Nombre</th>
+          <th>Apellidos</th>
+          <th>Email</th>
+          <th>Acción</th>
+        </tr>
+        <tr>
           <input type="hidden" name="huella" value="<?= htmlspecialchars($datos['huella'] ?? '') ?>">
           <td><input type="text" name="documento" value="<?= htmlspecialchars($datos['documento'] ?? '') ?>"></td>
           <td><input type="text" name="nombre" value="<?= htmlspecialchars($datos['nombres'] ?? '') ?>"></td>
           <td><input type="text" name="apellido" value="<?= htmlspecialchars($datos['apellidos'] ?? '') ?>"></td>
           <td><input type="email" name="email" value="<?= htmlspecialchars($datos['email'] ?? '') ?>"></td>
           <td><input type="submit" value="Modificar" name="accion"></td>
-        </form>
-      </tr>
-      <?php endif; ?>
-    </table>
+        </tr>
+      </table>
+    </form>
+    <?php endif; ?>
 
     <div style="text-align: center;">
       <a href="indexPersonas.html" class="btn-regresar">← REGRESAR</a>
     </div>
   </div>
-
 </body>
 </html>
+

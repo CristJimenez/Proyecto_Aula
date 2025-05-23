@@ -50,7 +50,7 @@
     }
 
     th {
-      background-color: #f7f7f7;
+      background-color:rgb(171, 240, 219);
       font-weight: bold;
       color: #444;
     }

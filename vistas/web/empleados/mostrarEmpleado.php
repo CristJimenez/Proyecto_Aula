@@ -112,7 +112,6 @@ $empleados = $_SESSION['empleados'] ?? [];
           <td class="title_tabla">Horario</td>
           <td class="title_tabla">Cargo</td>
           <td class="title_tabla">Departamento</td>
-          <td class="title_tabla">Huella Persona</td>
         </tr>
 
         <?php foreach ($empleados as $row) { ?>
@@ -120,7 +119,6 @@ $empleados = $_SESSION['empleados'] ?? [];
             <td><?= htmlspecialchars($row->getHorario()) ?></td>
             <td><?= htmlspecialchars($row->getCargo()) ?></td>
             <td><?= htmlspecialchars($row->getDepartamento()) ?></td>
-            <td><?= htmlspecialchars($row->getHuella()) ?></td>
           </tr>
         <?php } ?>
       </table>
