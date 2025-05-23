@@ -110,7 +110,7 @@ $estudiantes = $_SESSION['estudiantes'] ?? [];
 <body>
   <div class="container">
     <a href="indexEstudiante.html" class="boton-regresar">REGRESAR</a>
-    <h2>Listado de Estudiantes</h2>
+    <h2>📋Listado de Estudiantes</h2>
 
     <?php if (!empty($estudiantes)) { ?>
       <table>

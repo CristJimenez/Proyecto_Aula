@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GESTIONAR EMPLEADO</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #6dd5ed, #2193b0); /* mismo fondo azul degradado */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .btn-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    a {
+      display: block;
+      padding: 12px 0;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    a:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    a:active {
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>👨‍💼 GESTIONAR EMPLEADO</h2>
+    <div class="btn-container">
+      <a href="agregarempleado.php">➕ INSERTAR</a>
+      <a href="modificarEmpleado.php">📝 MODIFICAR</a>
+      <a href="eliminar.php">❌ ELIMINAR</a>
+      <a href="mostrarEmpleado.php">📋 MOSTRAR</a>
+    </div>
+  </div>
+</body>
+</html>
