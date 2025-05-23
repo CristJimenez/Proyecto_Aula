@@ -1,191 +1,69 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gestión de Estudiantes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GESTIONAR PERSONAS</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
+      margin: 0;
       font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to right, #74ebd5, #ACB6E5);
-      color: #333;
-    }
-
-    header {
-      background-color: white;
-      padding: 20px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      background: linear-gradient(to right, #f8ffae, #43c6ac);
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .logo img {
-      height: 60px;
-    }
-
-    .Indicacion {
-      flex-grow: 1;
-      text-align: center;
-      font-size: 16px;
-      color: #007bff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: #555;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
-    nav a:hover {
-      color: #007bff;
+      min-height: 100vh;
     }
 
     .container {
-      padding: 40px 20px;
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
       text-align: center;
+      max-width: 400px;
+      width: 100%;
     }
 
-    .sudtitulo {
-      font-size: 24px;
+    h2 {
+      color: #007bff;
       margin-bottom: 30px;
     }
 
-    .crud__tabla {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      justify-content: center;
-      margin-top: 20px;
-    }
-
-    .crud__elemento {
-      background-color: white;
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s ease;
-    }
-
-    .crud__elemento:hover {
-      transform: translateY(-5px);
-    }
-
-    .crud__name {
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #007bff;
-    }
-
-    .price_items p {
-      font-size: 14px;
-      margin-bottom: 15px;
-      color: #555;
-    }
-
-    .boton_cta, 
-    .crud__elemento form input[type="submit"],
-    .btn-regresar {
-      display: inline-block;
-      padding: 10px 20px;
+    .btn {
+      display: block;
       background-color: #007bff;
       color: white;
       text-decoration: none;
+      padding: 12px 20px;
       border-radius: 8px;
+      margin: 10px 0;
       font-weight: bold;
       transition: background-color 0.3s ease, transform 0.2s ease;
-      border: none;
-      cursor: pointer;
-      margin-top: 10px;
     }
 
-    .boton_cta:hover, 
-    .crud__elemento form input[type="submit"]:hover,
-    .btn-regresar:hover {
+    .btn:hover {
       background-color: #0056b3;
       transform: scale(1.05);
     }
-
-    .btn-regresar {
-      margin: 40px auto 0;
-      text-align: center;
-    }
-
-    @media (max-width: 600px) {
-      .Indicacion {
-        font-size: 14px;
-        margin-top: 10px;
-      }
-    }
   </style>
 </head>
+
 <body>
 
-  <header>
-    <div class="logo">
-      <img src="/images/Logo-Unicolombo-1536x410.png" alt="Logo Unicolombo">
-    </div>
-    <a href="#" class="Indicacion">Bienvenido a Gestión de Estudiantes - Fundación Universitaria Colombo Internacional</a>
-    <nav>
-      <a href="#" class="nav-link">Inicio</a>
-      <a href="#" class="nav-link">Soporte</a>
-    </nav>
-  </header>
-
-  <section class="container">
-    <h2 class="sudtitulo">Selecciona la operación pertinente</h2>
-
-    <div class="crud__tabla">
-      <div class="crud__elemento">
-        <p class="crud__name">Registrar</p>
-        <div class="price_items">
-          <p>Selecciona esta opción para el registro de un nuevo estudiante</p>
-        </div>
-        <a href="addPersona.php" class="boton_cta">Comenzar</a>
-      </div>
-
-      <div class="crud__elemento">
-        <p class="crud__name">Mostrar</p>
-        <div class="price_items">
-          <p>Selecciona esta opción para mostrar el registro de estudiantes</p>
-        </div>
-        <form action="../../../controladores/ctrlPersonas.php" method="post">
-          <input type="submit" value="Listar" name="accion">
-        </form>
-      </div>
-
-      <div class="crud__elemento">
-        <p class="crud__name">Modificar</p>
-        <div class="price_items">
-          <p>Selecciona esta opción para modificar el registro de un estudiante</p>
-        </div>
-        <a href="modificarPersona.php" class="boton_cta">Comenzar</a>
-      </div>
-
-      <div class="crud__elemento">
-        <p class="crud__name">Eliminar</p>
-        <div class="price_items">
-          <p>Selecciona esta opción para eliminar el registro de un estudiante</p>
-        </div>
-        <a href="eliminarPersona.php" class="boton_cta">Comenzar</a>
-      </div>
-    </div>
-
-    
-  </section>
+  <div class="container">
+    <h2>GESTIONAR PERSONAS</h2>
+    <a href="addPersona.php" class="btn">AGREGAR</a>
+    <a href="modificarPersona.php" class="btn">MODIFICAR</a>
+    <a href="eliminarPersona.php" class="btn">ELIMINAR</a>
+    <form action="../../../controladores/ctrlPersonas.php" method="post">
+      <input class="btn" type="submit" value="Listar" name="accion">
+    </form>
+    <a href="../extra/indexprincipal.html" class="btn">← REGRESAR</a>
+  </div>
 
 </body>
+
 </html>
