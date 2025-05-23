@@ -45,16 +45,15 @@ class ControladorEmpleados
         $departamento = @$_REQUEST['departamento'];
 
         $e = new empleados($huella, $cargo, $horario, $departamento);
-        $e->setHuella($huella);
-        $e->setCargo($cargo);
-        $e->setHorario($horario);
-        $e->setDepartamento($departamento);
 
         $crud = new CrudEmpleadoImp();
-        $crud->insertar($e);
-        $total = $crud->contar();
-        $msj = "Usuario agregado, Total: " . $total;
-        header("Location: ../vistas/web/empleados/agregarempleado.php?msj=$msj");
+
+        try {
+            $crud->insertar($e);
+            $total = $crud->contar();
+            $msj = "Usuario agregado. Total: " . $total;
+            header("Location: ../vistas/web/empleados/agregarempleado.php?msj=$msj");
+        }
     }
     public static function consultar_empleado()
     {
@@ -67,7 +66,7 @@ class ControladorEmpleados
         // Obtenemos el empleado usando el modelo por huella_persona
         $empleado = $crud->consultarPorId($huella);
 
-            if($empleado){
+        if ($empleado) {
 
             $_SESSION['datos'] = [
                 "horario" => $empleado->getHorario(),
