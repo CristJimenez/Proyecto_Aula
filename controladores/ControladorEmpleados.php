@@ -36,32 +36,33 @@ class ControladorEmpleados
         }
     }
 
-   public static function guardar_empleados() {
-    $huella = @$_REQUEST['huella'];
-    $cargo = @$_REQUEST['cargo'];
-    $horario = @$_REQUEST['horario'];
-    $departamento = @$_REQUEST['departamento'];
+    public static function guardar_empleados()
+    {
+        $huella = @$_REQUEST['huella'];
+        $cargo = @$_REQUEST['cargo'];
+        $horario = @$_REQUEST['horario'];
+        $departamento = @$_REQUEST['departamento'];
 
-    $e = new empleados($huella, $cargo, $horario, $departamento);
+        $e = new empleados($huella, $cargo, $horario, $departamento);
 
-    $crud = new CrudEmpleadoImp();
+        $crud = new CrudEmpleadoImp();
 
-    try {
-        $crud->insertar($e);
-        $total = $crud->contar();
-        $msj = "Usuario agregado. Total: " . $total;
-        header("Location: ../vistas/web/empleados/agregarempleado.php?msj=$msj");
-    } catch (Exception $ex) {
-        // Aquí se captura el error de duplicado o cualquier otro
-        if (str_contains($ex->getMessage(), 'Duplicate entry')) {
-            $msj = "❌ Error: La huella '$huella' ya está registrada.";
-        } else {
-            $msj = "❌ No existe una persona con esa huella: " ;
+        try {
+            $crud->insertar($e);
+            $total = $crud->contar();
+            $msj = "Usuario agregado. Total: " . $total;
+            header("Location: ../vistas/web/empleados/agregarempleado.php?msj=$msj");
+        } catch (Exception $ex) {
+            // Aquí se captura el error de duplicado o cualquier otro
+            if (str_contains($ex->getMessage(), 'Duplicate entry')) {
+                $msj = "❌ Error: La huella '$huella' ya está registrada.";
+            } else {
+                $msj = "❌ No existe una persona con esa huella: ";
+            }
+
+            header("Location: ../vistas/web/empleados/agregarempleado.php?error=" . urlencode($msj));
         }
-
-        header("Location: ../vistas/web/empleados/agregarempleado.php?error=" . urlencode($msj));
     }
-}
 
     public static function consultar_empleado()
     {
@@ -102,30 +103,31 @@ class ControladorEmpleados
         header("Location: ../vistas/web/empleados/eliminar.php?msjeli=$msjeli");
     }
 
- public static function modificar() {
-    $huella_persona = @$_REQUEST['huella'];
-    $cargo = @$_REQUEST['cargo'];
-    $horario = @$_REQUEST['horario'];
-    $departamento = @$_REQUEST['departamento'];
+    public static function modificar()
+    {
+        $huella_persona = @$_REQUEST['huella'];
+        $cargo = @$_REQUEST['cargo'];
+        $horario = @$_REQUEST['horario'];
+        $departamento = @$_REQUEST['departamento'];
 
-    $crud = new CrudEmpleadoImp();
+        $crud = new CrudEmpleadoImp();
 
-    try {
-        // ✅ Verificamos si la huella existe
-        $crud->consultarPorId($huella_persona); // Esto lanza una excepción si no existe
+        try {
+            // ✅ Verificamos si la huella existe
+            $crud->consultarPorId($huella_persona); // Esto lanza una excepción si no existe
 
-        $u = new empleados($huella_persona, $cargo, $horario, $departamento);
-        $crud->modificar($u);
+            $u = new empleados($huella_persona, $cargo, $horario, $departamento);
+            $crud->modificar($u);
 
-        $msj = "Empleados modificados correctamente.";
-        header("Location: ../Vistas/web/empleados/modificarEmpleado.php?msj=" . urlencode($msj));
-    } catch (Exception $ex) {
-        $error = "❌ " . $ex->getMessage();
-                    $msj = "❌ No existe una persona con esa huella: " ;
+            $msj = "Empleados modificados correctamente.";
+            header("Location: ../Vistas/web/empleados/modificarEmpleado.php?msj=" . urlencode($msj));
+        } catch (Exception $ex) {
+            $error = "❌ " . $ex->getMessage();
+            $msj = "❌ No existe una persona con esa huella: ";
 
-        header("Location: ../Vistas/web/empleados/modificarEmpleado.php?error=" . urlencode($error));
+            header("Location: ../Vistas/web/empleados/modificarEmpleado.php?error=" . urlencode($error));
+        }
     }
-}
     public static function consultar_todo()
     {
         session_start();
