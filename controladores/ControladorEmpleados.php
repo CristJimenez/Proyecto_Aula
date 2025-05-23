@@ -66,7 +66,7 @@ class ControladorEmpleados{
             // Obtenemos el empleado usando el modelo por huella_persona
             $empleado = $crud->consultarPorId($huella);
 
-            if(is_object($empleado)){
+            if($empleado){
 
             $_SESSION['datos'] =[
                 "horario" => $empleado->getHorario(),

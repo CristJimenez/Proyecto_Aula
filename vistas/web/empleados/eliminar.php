@@ -12,7 +12,7 @@
         <center>
             <h2>ELIMINAR EMPLEADO</h2>
             <hr>
-            <form method="post" action="../../../controladores/ControladorEmpleados.php">
+            <form method="post" action="../../../Controladores/ControladorEmpleados.php">
                 <div class="receptor">
                     <label for="huella_persona">HUELLA EMPLEADO:</label>
                     <input type="text" name="huella_persona" required placeholder="INGRESE LA HUELLA DEL EMPLEADO">

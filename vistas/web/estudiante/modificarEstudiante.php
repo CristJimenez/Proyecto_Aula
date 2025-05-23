@@ -135,7 +135,7 @@
 
       <div class="buttons">
         <input type="reset" value="Limpiar" />
-        <input type="submit" value="Modificar" name="accion" />
+        <input type="submit" value="MODIFICAR" name="accion" />
       </div>
     </form>
     <div id="mensaje-error"><?= @$_REQUEST['msj'] ?></div>
