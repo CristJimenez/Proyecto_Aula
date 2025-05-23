@@ -102,6 +102,7 @@
 </head>
 
 <body>
+
   <div class="container">
     <h2>ELIMINAR EMPLEADO</h2>
     <hr>
@@ -133,6 +134,7 @@
                   onsubmit="return confirm('¿Seguro desea eliminar este registro?');">
               <input type="hidden" name="huella_persona" value="<?= htmlspecialchars($datos['huella_persona'] ?? '') ?>">
               <input type="submit" class="btn" value="Eliminar" name="accion">
+
             </form>
           </td>
         </tr>
