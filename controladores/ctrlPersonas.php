@@ -8,7 +8,6 @@ class ctrlPersona
     {
         $accion = $_REQUEST['accion'];
 
-
         switch ($accion) {
             case 'Guardar':
 
@@ -87,6 +86,7 @@ class ctrlPersona
 
             $_SESSION['datos'] = [
 
+                "huella" => $elemento->getHuella(),
                 "documento" => $elemento->getDocumento(),
                 "nombres" => $elemento->getNombres(),
                 "apellidos" => $elemento->getApellidos(),
