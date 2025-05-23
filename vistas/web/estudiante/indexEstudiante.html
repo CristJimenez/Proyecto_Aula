@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GESTIONAR ESTUDIANTE</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .container {
+      background-color: white;
+      padding: 40px 60px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+      color: #333;
+      font-size: 24px;
+      letter-spacing: 1px;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 14px 0;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      background-color: #4b6cb7;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: #3a539b;
+      transform: scale(1.02);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>GESTIONAR ESTUDIANTE</h2>
+    <a class="btn" href="InsertarEstudiante.php">➕ INGRESAR</a>
+    <a class="btn" href="modificarEstudiante.php">✏️ MODIFICAR</a>
+    <a class="btn" href="eliminarEstudiante.php">🗑️ ELIMINAR</a>
+    <a class="btn" href="mostrarEstudiante.php">📋 MOSTRAR</a>
+    <a class="btn" href="../extra/indexprincipal.html">← REGRESAR</a>
+  </div>
+</body>
+</html>

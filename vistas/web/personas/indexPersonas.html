@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GESTIONAR PERSONAS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, #f8ffae, #43c6ac);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h2 {
+      color: #007bff;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: block;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin: 10px 0;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>GESTIONAR PERSONAS</h2>
+    <a href="addPersona.php" class="btn">AGREGAR</a>
+    <a href="modificarPersona.php" class="btn">MODIFICAR</a>
+    <a href="eliminarPersona.php" class="btn">ELIMINAR</a>
+    <form action="../../../controladores/ctrlPersonas.php" method="post">
+      <input class="btn" type="submit" value="Listar" name="accion">
+    </form>
+    <a href="../extra/indexprincipal.html" class="btn">← REGRESAR</a>
+  </div>
+
+</body>
+
+</html>
