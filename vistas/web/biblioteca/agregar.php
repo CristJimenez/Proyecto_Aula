@@ -1,64 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AGREGAR BIBLIOTECA</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <style type="text/css">
-        th{
-            text-align: right;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGREGAR BIBLIOTECA</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to right, #74ebd5, #9face6);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .form-card {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #333;
+    }
+
+    label {
+      font-weight: 600;
+      color: #555;
+      margin-top: 15px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus {
+      background-color: #f0f0f0;
+      outline: none;
+    }
+
+    .buttons {
+      text-align: right;
+      margin-top: 20px;
+    }
+
+    input[type="submit"],
+    input[type="reset"] {
+      background-color: #4b6cb7;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 24px;
+      margin-left: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    input[type="submit"]:hover,
+    input[type="reset"]:hover {
+      background-color: #3a539b;
+      transform: scale(1.03);
+    }
+
+    .mensaje-error {
+      color: red;
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .boton-regresar {
+      display: inline-block;
+      margin-top: 30px;
+      background-color: #4b6cb7;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 24px;
+      text-decoration: none;
+      text-align: center;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .boton-regresar:hover {
+      background-color: #3a539b;
+      transform: scale(1.03);
+    }
+  </style>
 </head>
 <body>
-    <div>
+  <div class="form-card">
+    <h2>AGREGAR BIBLIOTECA</h2>
+    <form method="post" action="../../../Controladores/ControladorBiblioteca.php">
+      <div class="form-group">
+        <label for="id">BIBLIOTECA ID:</label>
+        <input type="text" name="id" id="id" required placeholder="INGRESE EL ID">
+      </div>
+      <div class="form-group">
+        <label for="aforo">AFORO:</label>
+        <input type="number" name="aforo" id="aforo" required placeholder="INGRESE EL AFORO">
+      </div>
+      <div class="form-group">
+        <label for="area">ÁREA:</label>
+        <input type="text" name="area" id="area" required placeholder="INGRESE EL ÁREA">
+      </div>
+      <div class="buttons">
+        <input type="reset" value="LIMPIAR">
+        <input type="submit" value="GUARDAR" name="accion">
+      </div>
+    </form>
+    <div class="mensaje-error"><?= @$_REQUEST['msj'] ?></div>
     <center>
-        <h2>AGREGAR BIBLIOTECA</h2>
-        <hr>
-        <form method="post" action="../../../controladores/ControladorBiblioteca.php">
-            <fieldset style="width: 35%;">
-                <tr>
-                    <th>BIBLIOTECA ID:</th>
-                    <td>
-                        <input type="text" name="id" id="id" required
-                        placeholder="INGRESE EL ID">
-                    </td>
-                </tr>
-                <br><br>
-                <tr>
-                    <th>AFORO:</th>
-                    <td>
-                        <input type="number" name="aforo" id="aforo" required
-                        placeholder="INGRESE EL AFORO">
-                    </td>
-                </tr>
-                <br><br>
-                <tr>
-                    <th>AREA:</th>
-                    <td>
-                        <input type="text" name="area" id="area" required
-                        placeholder="INGRESE EL AREA">
-                    </td>
-                </tr>
-                <br><br>
-                <tr>
-                    <td colspan="2" align="rigth">
-                        <input type="reset" value="LIMPIAR">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="submit" value="GUARDAR" name="accion">
-                    </td>
-                </tr>
-            </fieldset>
-        </form>
-        <hr>
-        <span style="color: red;"><?= @$_REQUEST['msj'] ?></span>
-        <br><br>
-        <a href="indexbiblioteca.html">Regresar</a>
+      <a href="indexbiblioteca.html" class="boton-regresar">REGRESAR</a>
     </center>
-    </div>
+  </div>
 </body>
 </html>
