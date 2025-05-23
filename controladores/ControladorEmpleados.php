@@ -56,7 +56,7 @@ class ControladorEmpleados
         if (str_contains($ex->getMessage(), 'Duplicate entry')) {
             $msj = "❌ Error: La huella '$huella' ya está registrada.";
         } else {
-            $msj = "❌ Error inesperado: " . $ex->getMessage();
+            $msj = "❌ No existe una persona con esa huella: " ;
         }
 
         header("Location: ../vistas/web/empleados/agregarempleado.php?error=" . urlencode($msj));
