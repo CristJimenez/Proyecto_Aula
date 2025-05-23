@@ -98,8 +98,7 @@ class ControladorEmpleados
         $huella = $_POST['huella_persona'];
         $crud = new CrudEmpleadoImp();
         $crud->eliminarPorId($huella);
-        $total = $crud->contar();
-        $msjeli = "Empleado eliminado correctamente. Quedan: " . $total;
+        $msjeli = "Empleado eliminado correctamente.";
         header("Location: ../vistas/web/empleados/eliminar.php?msjeli=$msjeli");
     }
 
